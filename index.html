@@ -27,14 +27,6 @@
   text-align: center;
 }
 
-/* Bloqueio de seleção de texto */
-body {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
 *{box-sizing:border-box}
 
 body{
@@ -46,9 +38,12 @@ body{
   align-items:center;
   justify-content:center;
   overflow:hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-/* O restante dos seus estilos originais permanece igual... */
 .wrapper{
   position:relative;
   display:flex;
@@ -189,17 +184,6 @@ body{
   50% { opacity: 0; }
 }
 
-.firma{
-  position:absolute;
-  bottom:40px;
-  left:50%;
-  transform:translateX(-50%);
-}
-
-.firma img{
-  max-width:280px;
-}
-
 .footer{
   position:absolute;
   bottom:30px;
@@ -290,34 +274,23 @@ body{
   pointer-events:none;
 }
 
-.player-slide{
-  position:absolute;
-  top:670px;
-  right:0;
-  transform: translateX(260px);
-  width:200px;
-  height:100px;
-  display:flex;
-  align-items:center;
-  transition: transform .6s cubic-bezier(.4,0,.2,1);
-  z-index:10060;
+.player-drop{
+  position:fixed;
+  left:calc(140% - 210px);
+  top:42%;
+  margin-top:120px;
+  width:260px;
+  transform: translateY(-15px);
+  opacity:0;
+  pointer-events:none;
+  transition:.4s ease;
+  z-index:1000;
 }
 
-.player-slide.active{
-  transform: translateX(0);
-}
-
-.player-tab{
-  width:40px;
-  height:120px;
-  background: linear-gradient(180deg,#ff3b3b,#ca36367a);
-  border-radius:15px 0 0 15px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:22px;
-  cursor:pointer;
-  box-shadow:0 0 25px rgba(255,0,0,.6);
+.player-drop.active{
+  transform: translateY(0);
+  opacity:1;
+  pointer-events:auto;
 }
 
 .player-glass{
@@ -328,7 +301,6 @@ body{
   backdrop-filter: blur(18px);
   border-radius:20px;
   border:1px solid rgba(255,255,255,.25);
-  margin-left:-1px;
   box-shadow: inset 0 0 20px rgba(255,255,255,.15), 0 0 40px rgba(194, 88, 88, 0.45);
 }
 
@@ -349,6 +321,7 @@ body{
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   animation: songGlow 4s linear infinite;
+  text-align: center;
 }
 
 @keyframes songGlow{
@@ -370,57 +343,13 @@ body{
   cursor:pointer;
   backdrop-filter: blur(12px);
   transition:.3s;
+  color: white;
 }
 
-.progress, .volume-slider{
+.progress{
   margin-top:14px;
   width:100%;
   accent-color:#eed7d7;
-}
-
-.volume-container {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 5px;
-}
-
-.btn-player{
-  position:relative;
-}
-
-.player-drop{
-  position:fixed;
-  left:calc(140% - 210px);
-  top:42%;
-  margin-top:120px;
-  width:260px;
-  transform: translateY(-15px);
-  opacity:0;
-  pointer-events:none;
-  transition:.4s ease;
-  z-index:1000;
-}
-
-.player-drop.active{
-  transform: translateY(0);
-  opacity:1;
-  pointer-events:auto;
-}
-
-.menu-left .btn-player{
-  width:110px;
-  display:block;
-}
-
-.menu-left .btn-player > a{
-  width:100%;
-  display:block;
-}
-
-img{
-  pointer-events:none;
-  user-select:none;
 }
 
 .home-icon{
@@ -450,12 +379,8 @@ img{
   display:flex;
   align-items:center;
   justify-content:center;
-  background: radial-gradient( circle at top, #5a0000, #500000, #530000 );
+  background: radial-gradient(circle at top, #5a0000, #500000, #530000);
   overflow:hidden;
-}
-
-.heart-wrapper{
-  transform: translateY(-10px);
 }
 
 .heart-enter{
@@ -465,8 +390,7 @@ img{
   cursor:pointer;
   transform:rotate(-45deg);
   animation:heartFloat 3s ease-in-out infinite;
-  filter: drop-shadow(0 0 25px rgba(216, 23, 23, 0.8)) drop-shadow(0 0 60px rgba(192, 18, 18, 0.6));
-  transition:.35s ease;
+  filter: drop-shadow(0 0 25px rgba(216, 23, 23, 0.8));
 }
 
 .heart-enter::before, .heart-enter::after{
@@ -475,8 +399,7 @@ img{
   width:130px;
   height:130px;
   border-radius:50%;
-  z-index:1;
-  background:linear-gradient( 145deg, #fa8888, #cc1919, #ce1616 );
+  background:linear-gradient(145deg, #fa8888, #cc1919, #ce1616);
 }
 
 .heart-enter::before{ top:-65px; left:0; }
@@ -487,9 +410,9 @@ img{
   inset:0;
   border-radius:18px;
   z-index:2;
-  background:linear-gradient( 145deg, rgba(255,255,255,.35), rgba(255,180,190,.85) );
+  background:linear-gradient(145deg, rgba(255,255,255,.35), rgba(255,180,190,.85));
   backdrop-filter:blur(14px);
-  box-shadow: inset 0 0 28px rgba(255,255,255,.45), 0 0 45px rgba(255, 100, 100, 0.75);
+  box-shadow: inset 0 0 28px rgba(255,255,255,.45);
 }
 
 .heart-text{
@@ -497,92 +420,18 @@ img{
   inset:0;
   z-index:10;
   display:flex;
-  flex-direction:column;
   align-items:center;
   justify-content:center;
   transform:rotate(45deg);
   font-family:'Playfair Display',serif;
   font-size:17px;
-  letter-spacing:4px;
-  line-height:1;
   color:#db2828;
-  text-shadow: 0 2px 3px rgba(255,255,255,.95), 0 0 12px rgba(247, 88, 88, 0.9);
   pointer-events:none;
 }
-
-.mini-heart{
-  position:absolute;
-  width:14px;
-  height:14px;
-  z-index:3;
-  background:linear-gradient(145deg,#ffd6dc,#fa6e6e);
-  transform:rotate(-45deg);
-  opacity:.75;
-  animation:floatMini 3s ease-in-out infinite;
-}
-
-.mini-heart::before, .mini-heart::after{
-  content:"";
-  position:absolute;
-  width:14px;
-  height:14px;
-  background:inherit;
-  border-radius:50%;
-}
-
-.mini-heart::before{ top:-7px; left:0; }
-.mini-heart::after{ left:7px; top:0; }
-
-.mh1{ left:-26px; top:22px; animation-delay:.2s; }
-.mh2{ right:-26px; top:38px; animation-delay:.4s; }
-.mh3{ left:18px; bottom:-28px; animation-delay:.6s; }
-.mh4{ right:20px; bottom:-32px; animation-delay:.8s; }
 
 @keyframes heartFloat{
   0%,100%{ transform:rotate(-45deg) translateY(0); }
   50%{ transform:rotate(-45deg) translateY(-10px); }
-}
-
-@keyframes floatMini{
-  0%,100%{ transform:rotate(-45deg) translateY(0); opacity:.6; }
-  50%{ transform:rotate(-45deg) translateY(-8px); opacity:1; }
-}
-
-#page-transition{
-  position:fixed;
-  inset:0;
-  background:radial-gradient(circle at center, rgba(248, 137, 137, 0.85), rgba(196, 20, 20, 0.95) );
-  opacity:0;
-  pointer-events:none;
-  z-index:9999;
-  transform:scale(1.2);
-  filter:blur(20px);
-  transition: opacity .9s ease, transform .9s ease, filter .9s ease;
-}
-
-body.is-transitioning #page-transition{
-  opacity:1;
-  transform:scale(1);
-  filter:blur(0);
-}
-
-.page-content{
-  min-height:100vh;
-  width:100%;
-  display:flex;
-  justify-content:center;
-  opacity:0;
-  transform:translateY(20px);
-  transition: opacity 1.4s ease, transform 1.4s ease;
-}
-
-body.entered .page-content{
-  opacity:1;
-  transform:translateY(0);
-}
-
-body.entered{
-  overflow:auto;
 }
 
 .heart-sparkle{
@@ -601,10 +450,6 @@ body.entered{
   to{ opacity:0; transform: scale(2.5); }
 }
 
-html, body{
-  pointer-events: auto !important;
-}
-
 .corazon-xat {
   position: fixed;
   font-size: 16px;
@@ -612,7 +457,6 @@ html, body{
   animation: corazonFlotar 3.5s ease-out forwards;
   pointer-events: none;
   z-index: 999999;
-  text-shadow: 0 0 6px rgba(219, 87, 87, 0.6);
 }
 
 @keyframes corazonFlotar {
@@ -620,7 +464,36 @@ html, body{
   100% { transform: translateY(-120px) scale(1.4); opacity: 0; }
 }
 
-/* Os demais estilos do modal e elementos permanecem... */
+/* Modais Específicos */
+.married-card, .Amigos-card, .gallery-box {
+    background: rgba(182, 12, 12, 0.95);
+    border-radius: 26px;
+    padding: 20px;
+    color: white;
+    text-align: center;
+}
+
+.slide {
+    position: absolute;
+    width: 220px;
+    height: 360px;
+    transition: .6s ease;
+    opacity: 0;
+}
+
+.slide.active { opacity: 1; transform: scale(1); z-index: 3; }
+.slide.left { opacity: 0.6; transform: translateX(-260px) scale(0.8); }
+.slide.right { opacity: 0.6; transform: translateX(260px) scale(0.8); }
+
+.nav {
+    position: absolute;
+    top: 50%;
+    cursor: pointer;
+    font-size: 30px;
+    z-index: 10;
+}
+.nav.prev { left: 10px; }
+.nav.next { right: 10px; }
 </style>
 </head>
 <body>
@@ -628,19 +501,11 @@ html, body{
 <div id="custom-alert">Copyright - Acesso proibido</div>
 
 <div class="intro" id="intro">
-  <div class="heart-wrapper">
     <div class="heart-enter" onclick="enterSite()">
       <div class="heart-glass"></div>
       <span class="heart-text">Entrar</span>
-      <i class="mini-heart mh1"></i>
-      <i class="mini-heart mh2"></i>
-      <i class="mini-heart mh3"></i>
-      <i class="mini-heart mh4"></i>
     </div>
-  </div>
 </div>
-
-<div id="page-transition"></div>
 
 <div class="page-content">
   <canvas id="heartsCanvas"></canvas>
@@ -661,10 +526,6 @@ html, body{
               <button id="nextBtn">⏭</button>
             </div>
             <input type="range" id="progress" class="progress" value="0">
-            <div class="volume-container">
-              <span class="volume-icon">🔊</span>
-              <input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.1" value="0.5">
-            </div>
           </div>
         </div>
       </div>
@@ -672,12 +533,8 @@ html, body{
 
     <div class="card">
       <div class="avatar-wrap">
-        <div class="avatar">
-          <img src="https://xatimg.com/image/3jmO98mi8QCG.jpg">
-        </div>
-        <a href="https://xat.com" target="_blank" class="home-icon" title="Brasil">
-          <img src="https://xatimg.com/image/fIeImPfcKjZq.png" alt="Home">
-        </a>
+        <div class="avatar"><img src="https://xatimg.com/image/3jmO98mi8QCG.jpg"></div>
+        <a href="https://xat.com" target="_blank" class="home-icon"><img src="https://xatimg.com/image/fIeImPfcKjZq.png"></a>
       </div>
       <div class="name">♥ Name ♥</div>
       <div class="subtitle">Bem vindos ao meu Xatspace</div>
@@ -687,37 +544,85 @@ html, body{
   </div>
 </div>
 
+<div class="modal-overlay" id="galeriaModal">
+  <div class="modal-content">
+    <span class="modal-close" onclick="cerrarGaleria()">×</span>
+    <div class="gallery-box">
+      <div class="slider" id="slider">
+        <div class="slide active"><img src="https://xatimg.com/image/7BIxmBkfxdGu.jpg" width="100%"></div>
+        <div class="slide right"><img src="https://xatimg.com/image/7BIxmBkfxdGu.jpg" width="100%"></div>
+        <div class="slide left"><img src="https://xatimg.com/image/7BIxmBkfxdGu.jpg" width="100%"></div>
+      </div>
+      <div class="nav prev" onclick="prev()">❮</div>
+      <div class="nav next" onclick="next()">❯</div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="friendModal">
+  <div class="modal-content">
+    <span class="modal-close" onclick="cerrarFriend()">×</span>
+    <div class="Amigos-card">
+      <div class="Amigos-title">♡ Amigos ♡</div>
+      <p>Lista de amigos em breve...</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="marriedModal">
+  <div class="modal-content">
+    <span class="modal-close" onclick="cerrarMarried()">×</span>
+    <div class="married-card">
+      <div class="name">Gabr</div>
+      <div class="message">Cada momento ao seu lado é um presente.</div>
+    </div>
+  </div>
+</div>
+
 <script>
-// Função para mostrar o alerta personalizado
+// Travas de Segurança
 function showAlert() {
   const alertBox = document.getElementById('custom-alert');
   alertBox.style.display = 'block';
-  setTimeout(() => {
-    alertBox.style.display = 'none';
-  }, 2000);
+  setTimeout(() => { alertBox.style.display = 'none'; }, 2000);
 }
 
-// Bloqueio do Botão Direito
-document.addEventListener('contextmenu', function(e) {
-  e.preventDefault();
-  showAlert();
-});
+document.addEventListener('contextmenu', e => { e.preventDefault(); showAlert(); });
+document.onkeydown = e => { if (e.ctrlKey && e.keyCode === 85 || e.keyCode === 123) { showAlert(); return false; } };
+document.onselectstart = e => { e.preventDefault(); showAlert(); };
 
-// Bloqueio Ctrl+U e F12
-document.onkeydown = function(e) {
-  if (e.ctrlKey && (e.keyCode === 85) || (e.keyCode === 123)) {
-    showAlert();
-    return false;
-  }
+// Player de Música
+const playlist = [
+    { name: "Eminem - You dont know", url: "https://www.dropbox.com/scl/fi/4y0lc0fi24e9yavn17psv/Eminem-you-dont-know.mp3.mp3?rlkey=zicb6spgqe3pv0gqnz3xc24zo&st=wy1w0icm&raw=1" },
+    { name: "The Sound of Silence", url: "https://www.dropbox.com/scl/fi/2y9zhx5zjsdxg3zljc2f9/sound-of-silence.mp3.mp3?rlkey=88zg0td3loy40uxmcm9rnk1jt&st=qty8093e&raw=1" }
+];
+let currentTrack = 0;
+const audio = new Audio();
+
+function loadTrack(idx) {
+    audio.src = playlist[idx].url;
+    document.getElementById('songName').innerText = playlist[idx].name;
+}
+
+function togglePlayer() { document.getElementById('playerDrop').classList.toggle('active'); }
+
+document.getElementById('playPauseBtn').onclick = () => {
+    if(audio.paused) { audio.play(); document.getElementById('playPauseBtn').innerText = '⏸'; }
+    else { audio.pause(); document.getElementById('playPauseBtn').innerText = '▶'; }
 };
 
-// Bloqueio de Seleção (extra via JS)
-document.onselectstart = function(e) {
-  e.preventDefault();
-  showAlert();
-};
+document.getElementById('nextBtn').onclick = () => { currentTrack = (currentTrack + 1) % playlist.length; loadTrack(currentTrack); audio.play(); };
+document.getElementById('prevBtn').onclick = () => { currentTrack = (currentTrack - 1 + playlist.length) % playlist.length; loadTrack(currentTrack); audio.play(); };
 
-// Funções originais do seu site permanecem abaixo...
+// Modais
+function abrirGaleria() { document.getElementById('galeriaModal').classList.add('active'); }
+function cerrarGaleria() { document.getElementById('galeriaModal').classList.remove('active'); }
+function abrirAmigos() { document.getElementById('friendModal').classList.add('active'); }
+function cerrarFriend() { document.getElementById('friendModal').classList.remove('active'); }
+function abrirMarried() { document.getElementById('marriedModal').classList.add('active'); }
+function cerrarMarried() { document.getElementById('marriedModal').classList.remove('active'); }
+
+// Efeito Digitação
 const textToType = "Quando tiver finalizado uma meta, não olhe para ela como a linha de chegada; olhe como o punto de partida para sua próxima conquista.";
 let index = 0;
 function typeWriter() {
@@ -730,11 +635,37 @@ function typeWriter() {
 
 function enterSite() {
   document.getElementById("intro").style.display = "none";
-  document.body.classList.add("entered");
+  loadTrack(currentTrack);
+  audio.play();
   typeWriter();
 }
 
-// O restante do seu código (Canvas, Modais, Player) continua aqui sem alterações...
+// Galeria Slider
+const slides = document.querySelectorAll('.slide');
+let currentSlide = 0;
+function updateSlider() {
+    slides.forEach((s, i) => {
+        s.className = 'slide';
+        if(i === currentSlide) s.classList.add('active');
+        else if(i === (currentSlide - 1 + slides.length) % slides.length) s.classList.add('left');
+        else if(i === (currentSlide + 1) % slides.length) s.classList.add('right');
+    });
+}
+function next() { currentSlide = (currentSlide + 1) % slides.length; updateSlider(); }
+function prev() { currentSlide = (currentSlide - 1 + slides.length) % slides.length; updateSlider(); }
+
+// Efeitos de Mouse
+document.addEventListener('mousemove', e => {
+    let corazon = document.createElement("div");
+    corazon.className = "corazon-xat";
+    corazon.innerHTML = "❤";
+    corazon.style.left = e.clientX + "px";
+    corazon.style.top = e.clientY + "px";
+    document.body.appendChild(corazon);
+    setTimeout(() => corazon.remove(), 2000);
+});
+
+updateSlider();
 </script>
 </body>
 </html>
