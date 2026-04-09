@@ -355,8 +355,8 @@ body{
 
 .player-glass{
   width:200px;
-  height:40%;
-  padding:4px;
+  height:auto;
+  padding:15px;
   background: rgba(223, 129, 129, 0.575);
   backdrop-filter: blur(18px);
 
@@ -417,11 +417,24 @@ body{
   box-shadow:0 0 25px rgba(253, 235, 235, 0.8);
 }
 
-.progress{
+.progress, .volume-slider{
   margin-top:14px;
   width:100%;
   accent-color:#eed7d7;
 }
+
+.volume-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 5px;
+}
+
+.volume-icon {
+  font-size: 12px;
+  color: #fff;
+}
+
 .btn-player{
   position:relative;
 }
@@ -431,9 +444,9 @@ body{
   position:fixed;               /* 🔥 SALE del menú */
   left:calc(140% - 210px);
   /* alineado con la card */
-  top:42%;                      /* misma altura del menú */
+  top:42%;                      /* mesma altura do menu */
   margin-top:120px;
-  /* cae hacia abajo */
+  /* cai para baixo */
   width:260px;
 
   transform: translateY(-15px);
@@ -467,7 +480,7 @@ body{
 }
 
 img{
-  pointer-events:auto; /* CORREÇÃO: Permite interação com a imagem */
+  pointer-events:none;
   user-select:none;
 }
 
@@ -671,7 +684,7 @@ img{
   position:absolute;
   inset:0;
   border-radius:18px;
-  z-index:2; /* 👈 corazón */
+  z-index:2; /* 👈 coração */
 
   background:linear-gradient(
     145deg,
@@ -1163,29 +1176,25 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
   box-shadow:0 15px 35px rgba(120,20,20,.45);
 }
 
-
 .gallery-box::before{
   content:"";
   position:absolute;
   inset:12px;
-  border-radius:20px;
-  /* proporcional al exterior */
+  border-radius:20px;            /* proporcional al exterior */
   border:1.1px solid rgba(255,255,255,.75);
   pointer-events:none;
 }
+
 
 /* HEADER */
 .gallery-header{
   position: relative;
   text-align: center;
-  height: 110px;
-  /* 🔒 ALTURA FIJA */
+  height: 110px;               /* 🔒 ALTURA FIJA */
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
-
 
 .gallery-header span{
   position:relative;
@@ -1214,17 +1223,16 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
   font-weight:200;
   -webkit-text-stroke: 0.5px rgba(255, 200, 200, 0.6);
 }
+
 /* LÍNEA */
 .gallery-header::after{
   content:"";
   position:absolute;
   left:0;
   right:0;
-  bottom: 22px;
-  /* 🔒 POSICIÓN FIJA */
+  bottom: 22px;                /* 🔒 POSICIÓN FIJA */
   height:1px;
   z-index:5;
-
   background:linear-gradient(
     90deg,
     transparent,
@@ -1263,13 +1271,10 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
   box-shadow:0 12px 30px rgba(0,0,0,.25);
 }
 
-
-
 .slide img{
   width:100%;
   height:100%;
   object-fit:cover;
-  cursor: pointer; /* Estilo visual de que é clicável */
 }
 
 .slide.active:hover::after{
@@ -1287,10 +1292,9 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
   z-index:3;
 }
 
-
 /* IZQ / DER */
 .slide.left{
-opacity:.6;
+  opacity:.6;
   transform:translateX(-260px) scale(.8);
   z-index:1;
 }
@@ -1333,22 +1337,17 @@ opacity:.6;
 
 </style>
 </head>
-
 <body>
 
 <div class="intro" id="intro">
   <div class="heart-wrapper">
     <div class="heart-enter" onclick="enterSite()">
-
       <div class="heart-glass"></div>
-
       <span class="heart-text">Entrar</span>
-
       <i class="mini-heart mh1"></i>
       <i class="mini-heart mh2"></i>
       <i class="mini-heart mh3"></i>
       <i class="mini-heart mh4"></i>
-
     </div>
   </div>
 </div>
@@ -1356,459 +1355,381 @@ opacity:.6;
 <div id="page-transition"></div>
 
 <div class="page-content">
-
   <canvas id="heartsCanvas"></canvas>
 
   <div class="wrapper">
-
     <div class="menu-left">
- <a href="#" onclick="abrirMarried(); return false;">♡ Married ♡</a>
-  <a href="#" onclick="abrirAmigos(); return false;">♡ Amigos ♡</a>
-      <a href="#" onclick="abrirGaleria();
-return false;">♡ Galeria ♡</a>
-
+      <a href="#" onclick="abrirMarried(); return false;">♡ Married ♡</a>
+      <a href="#" onclick="abrirAmigos(); return false;">♡ Amigos ♡</a>
+      <a href="#" onclick="abrirGaleria(); return false;">♡ Galeria ♡</a>
+      
       <div class="btn-player">
-        <a href="#" onclick="togglePlayer();
-return false;">♡ Musica ♡</a>
-
+        <a href="#" onclick="togglePlayer(); return false;">♡ Musica ♡</a>
         <div class="player-drop" id="playerDrop">
           <div class="player-glass">
             <div class="music-title">Musica</div>
             <div class="song-name animated-song" id="songName">Cargando...</div>
-
             <div class="player-controls">
               <button id="prevBtn">⏮</button>
               <button id="playPauseBtn">▶</button>
-     
-          <button id="nextBtn">⏭</button>
+              <button id="nextBtn">⏭</button>
             </div>
-
             <input type="range" id="progress" class="progress" value="0">
+            <div class="volume-container">
+              <span class="volume-icon">🔊</span>
+              <input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.1" value="0.5">
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-<div class="card">
+    <div class="card">
+      <div class="avatar-wrap">
+        <div class="avatar">
+          <img src="https://xatimg.com/image/3jmO98mi8QCG.jpg">
+        </div>
+        <a href="https://xat.com" target="_blank" class="home-icon" title="Brasil">
+          <img src="https://xatimg.com/image/fIeImPfcKjZq.png" alt="Home">
+        </a>
+      </div>
 
-  <div class="avatar-wrap">
-    <div class="avatar">
-      <img src="https://xatimg.com/image/3jmO98mi8QCG.jpg">
+      <div class="name">♥ Name ♥</div>
+      <div class="subtitle">Bem vindos ao meu Xatspace</div>
+      <div class="bio" id="typingText">
+        Quando tiver finalizado uma meta, não olhe para ela como a linha de chegada; olhe como o punto de partida para sua próxima conquista.
+      </div>
+
+      <div class="footer">✦ By:Gabr ✦</div>
     </div>
-
-    <a href="https://xat.com" target="_blank" class="home-icon" title="Brasil">
-      <img src="https://xatimg.com/image/fIeImPfcKjZq.png" alt="Home">
-    </a>
-    
   </div>
-
-  <div class="name">♥ Name ♥</div>
-  <div class="subtitle">Bem vindos ao meu Xatspace</div>
-
-  <div class="bio" id="typingText">
- Quando tiver finalizado uma meta, não olhe para ela como a linha de chegada;
-olhe como o punto de partida para sua próxima conquista.
- </div>
-
-  
-  <div class="footer">✦ By:Gabr ✦</div>
-
 </div>
 
 <div class="modal-overlay" id="galeriaModal">
   <div class="modal-content">
-
     <span class="modal-close" onclick="cerrarGaleria()">×</span>
-
     <div class="gallery-box">
-
       <div class="gallery-header">
         <span>⭐︎ɢᴀʟᴇʀɪᴀ⭐︎</span>
       </div>
-
       <div class="slider" id="slider">
-
         <div class="slide active">
-          <img src="https://xatimg.com/image/7BIxmBkfxdGu.jpg" onclick="next()">
+          <img src="https://xatimg.com/image/7BIxmBkfxdGu.jpg">
         </div>
-
         <div class="slide right">
-  
-         <img src="https://xatimg.com/image/7BIxmBkfxdGu.jpg" onclick="next()">
+          <img src="https://xatimg.com/image/7BIxmBkfxdGu.jpg">
         </div>
-
         <div class="slide left">
-          <img src="https://xatimg.com/image/7BIxmBkfxdGu.jpg" onclick="next()">
+          <img src="https://xatimg.com/image/7BIxmBkfxdGu.jpg">
         </div>
-
         <div class="slide right">
-          <img src="https://xatimg.com/image/7BIxmBkfxdGu.jpg" onclick="next()">
-        </div> 
-
-      </div>
-
+          <img src="https://xatimg.com/image/7BIxmBkfxdGu.jpg">
+        </div>
+        </div>
       <div class="nav prev" onclick="prev()">❮</div>
       <div class="nav next" onclick="next()">❯</div>
-
     </div>
-
   </div>
 </div>
 
-
 <div class="modal-overlay" id="friendModal">
   <div class="modal-content">
-
     <span class="modal-close" onclick="cerrarFriend()">×</span>
-
     <div class="Amigos-card">
-
       <div class="Amigos-title">♡ Amigos ♡</div>
-
       <div class="Amigos-list">
-
-  
-       <div class="friend-item">
-          <div class="friend-left">
-            <div class="avatar">Na</div>
-            <div class="friend-info">
-              <div class="friend-name">Name</div>
-              <div class="friend-id">12345</div>
-            </div>
-   
-        </div>
-
-          <a class="friend-btn" href="https://xat.me/12345" target="_blank">
-            XAT.ME
-          </a>
-        </div>
-
-        <div class="friend-item">
-          <div class="friend-left">
-            <div class="avatar">Na</div>
-      
-       <div class="friend-info">
-              <div class="friend-name">Name</div>
-              <div class="friend-id">12345</div>
-            </div>
-          </div>
-
-          <a class="friend-btn" href="https://xat.me/12345" target="_blank">
-            XAT.ME
-          </a>
-      
-   </div>
-
-        <div class="friend-item">
-          <div class="friend-left">
-            <div class="avatar">Na</div>
-            <div class="friend-info">
-              <div class="friend-name">Name</div>
-              <div class="friend-id">12345</div>
-           
-  </div>
-          </div>
-
-          <a class="friend-btn" href="https://xat.me/12345" target="_blank">
-            XAT.ME
-          </a>
-        </div>
-
-        <div class="friend-item">
-          <div class="friend-left">
-            <div class="avatar">Na</div>
-  
-           <div class="friend-info">
-              <div class="friend-name">Name</div>
-              <div class="friend-id">12345</div>
-            </div>
-          </div>
-
-          <a class="friend-btn" href="https://xat.me/12345" target="_blank">
-            XAT.ME
-          </a>
-  
-       </div>
-
-        <div class="friend-item">
-          <div class="friend-left">
-            <div class="avatar">Na</div>
-            <div class="friend-info">
-              <div class="friend-name">Name</div>
-              <div class="friend-id">12345</div>
-       
-      </div>
-          </div>
-
-          <a class="friend-btn" href="https://xat.me/12345" target="_blank">
-            XAT.ME
-          </a>
-        </div>
-
-        <div class="friend-item">
-          <div class="friend-left">
-           
-  <div class="avatar">Na</div>
-            <div class="friend-info">
-              <div class="friend-name">Name</div>
-              <div class="friend-id">12345</div>
-            </div>
-          </div>
-
-          <a class="friend-btn" href="https://xat.me/12345" target="_blank">
-            XAT.ME
         
-   </a>
+        <div class="friend-item">
+          <div class="friend-left">
+            <div class="avatar">Na</div>
+            <div class="friend-info">
+              <div class="friend-name">Name</div>
+              <div class="friend-id">12345</div>
+            </div>
+          </div>
+          <a class="friend-btn" href="https://xat.me/12345" target="_blank"> XAT.ME </a>
+        </div>
+
+        <div class="friend-item">
+          <div class="friend-left">
+            <div class="avatar">Na</div>
+            <div class="friend-info">
+              <div class="friend-name">Name</div>
+              <div class="friend-id">12345</div>
+            </div>
+          </div>
+          <a class="friend-btn" href="https://xat.me/12345" target="_blank"> XAT.ME </a>
+        </div>
+
+        <div class="friend-item">
+          <div class="friend-left">
+            <div class="avatar">Na</div>
+            <div class="friend-info">
+              <div class="friend-name">Name</div>
+              <div class="friend-id">12345</div>
+            </div>
+          </div>
+          <a class="friend-btn" href="https://xat.me/12345" target="_blank"> XAT.ME </a>
+        </div>
+
+        <div class="friend-item">
+          <div class="friend-left">
+            <div class="avatar">Na</div>
+            <div class="friend-info">
+              <div class="friend-name">Name</div>
+              <div class="friend-id">12345</div>
+            </div>
+          </div>
+          <a class="friend-btn" href="https://xat.me/12345" target="_blank"> XAT.ME </a>
+        </div>
+
+        <div class="friend-item">
+          <div class="friend-left">
+            <div class="avatar">Na</div>
+            <div class="friend-info">
+              <div class="friend-name">Name</div>
+              <div class="friend-id">12345</div>
+            </div>
+          </div>
+          <a class="friend-btn" href="https://xat.me/12345" target="_blank"> XAT.ME </a>
+        </div>
+
+        <div class="friend-item">
+          <div class="friend-left">
+            <div class="avatar">Na</div>
+            <div class="friend-info">
+              <div class="friend-name">Name</div>
+              <div class="friend-id">12345</div>
+            </div>
+          </div>
+          <a class="friend-btn" href="https://xat.me/12345" target="_blank"> XAT.ME </a>
         </div>
 
       </div>
-
     </div>
-
   </div>
 </div>
 
 <div class="modal-overlay" id="marriedModal">
   <div class="modal-content">
-
     <span class="modal-close" onclick="cerrarMarried()">×</span>
-
     <div class="married-card">
-
       <div class="avatar-wrap">
         <div class="avatar">
-          <img src="https://xatimg.com/image/CpMOGq9hdusL.jpg" alt="Pareja">
+          <img src="https://xatimg.com/image/7BIxmBkfxdGu.jpg">
         </div>
-        <div class="married-heart"><span>❤</span></div>
+        <div class="married-heart">
+          <span>💍</span>
+        </div>
       </div>
-
-      <div class="name">Name</div>
- 
+      <div class="name">Gabr</div>
       <div class="id">12345</div>
-
       <div class="message">
-  Eu te amo muito  meu amo...
+        Cada momento ao seu lado é um presente que guardo com todo carinho no meu coração.
       </div>
-
       <div class="xatme">
         <a href="https://xat.me/12345" target="_blank">XAT.ME</a>
       </div>
-
-
     </div>
-
   </div>
 </div>
 
-
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const element = document.getElementById("typingText");
- if (!element) return;
+// ===============================
+//   EFECTO LLUVIA DE CORAZONES
+// ===============================
+const canvas = document.getElementById('heartsCanvas');
+const ctx = canvas.getContext('2d');
+let hearts = [];
 
-  // Evita que se ejecute más de una vez
-  if (element.dataset.typed === "true") return;
- element.dataset.typed = "true";
-
-  const text = element.textContent.trim();
-  element.textContent = "";
-
-  let index = 0;
-  const speed = 65;
- function typeEffect() {
-    if (index < text.length) {
-      element.textContent += text.charAt(index);
-      index++;
- setTimeout(typeEffect, speed);
-    }
-  }
-
-  typeEffect();
-});
-
-function abrirGaleria(){
-  document.getElementById("galeriaModal").classList.add("active");
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 }
-
-function cerrarGaleria(){
-  document.getElementById("galeriaModal").classList.remove("active");
-}
-
-const canvas = document.getElementById("heartsCanvas");
- const ctx = canvas.getContext("2d");
-
-let w, h;
-function resize(){
-  w = canvas.width = window.innerWidth;
-  h = canvas.height = window.innerHeight;
- }
+window.addEventListener('resize', resize);
 resize();
-window.addEventListener("resize", resize);
 
-const hearts = [];
-const HEART_COUNT = 40;
- function createHeart(startTop = true){
-  return {
-    x: Math.random() * w,
-    y: startTop ?
- -30 : Math.random() * h,
-    size: 6 + Math.random() * 6,
-    speed: 0.25 + Math.random() * 0.6,
-    drift: (Math.random() - 0.5) * 0.2,
-    alpha: 0.12 + Math.random() * 0.25
-  };
- }
-
-/* Inicial */
-for(let i = 0; i < HEART_COUNT; i++){
-  hearts.push(createHeart(false));
- }
-
-function drawHeart(x, y, size, alpha, scaleX = 1.1, scaleY = 0.75){
-  ctx.save();
-  ctx.translate(x, y);
- /* escala general + aplanado */
-  ctx.scale(size * scaleX, size * scaleY);
-
-  ctx.beginPath();
-  ctx.moveTo(0, 0);
- ctx.bezierCurveTo(-0.5, -0.6, -1.4, 0.3, 0, 1.6);
-  ctx.bezierCurveTo(1.4, 0.3, 0.5, -0.6, 0, 0);
-  ctx.closePath();
-
-  ctx.fillStyle = `rgba(255, 215, 225, ${alpha})`;
-  ctx.fill();
- ctx.restore();
+class ParticleHeart {
+  constructor() {
+    this.reset();
+  }
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height - canvas.height;
+    this.size = Math.random() * 8 + 4;
+    this.speed = Math.random() * 2 + 1;
+    this.opacity = Math.random() * 0.5 + 0.2;
+    this.swing = Math.random() * 2;
+  }
+  draw() {
+    ctx.fillStyle = `rgba(255, 100, 100, ${this.opacity})`;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size / 2, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  update() {
+    this.y += this.speed;
+    this.x += Math.sin(this.y / 30) * this.swing;
+    if (this.y > canvas.height) this.reset();
+  }
 }
 
+function initHearts() {
+  hearts = [];
+  for (let i = 0; i < 50; i++) hearts.push(new ParticleHeart());
+}
 
-function animate(){
-  ctx.clearRect(0, 0, w, h);
-
-  hearts.forEach((heart, i) => {
-    heart.y += heart.speed;
-    heart.x += heart.drift;
-
-    drawHeart(heart.x, heart.y, heart.size, heart.alpha);
-
-    /* CUANDO SALE DE PANTALLA → NUEVO DESDE ARRIBA */
-    if(heart.y > h + 40){
-      hearts[i] = createHeart(true);
-    }
+function animateHearts() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  hearts.forEach(h => {
+    h.update();
+    h.draw();
   });
- requestAnimationFrame(animate);
+  requestAnimationFrame(animateHearts);
 }
+initHearts();
+animateHearts();
 
-animate();
-
-let songs = [
-  { name: "Karol G - Anuel AA - Culpables", url: "music/Karol G - Anuel AA - Culpables.mp3" },
-  { name: "Anuel AA - Amanece", url: "music/Anuel AA - Amanece.mp3" },
-  { name: "Matisse - Reik - Eres Tu", url: "music/Matisse - Reik - Eres Tu.mp3" }
-];
- let audio = new Audio();
-let currentIndex = 0;
-let isPlaying = false;
-
-const playPauseBtn = document.getElementById("playPauseBtn");
- const nextBtn = document.getElementById("nextBtn");
-const prevBtn = document.getElementById("prevBtn");
-const songName = document.getElementById("songName");
-const progress = document.getElementById("progress");
- function loadSong(autoplay = false){
-  audio.src = songs[currentIndex].url;
-  songName.textContent = songs[currentIndex].name;
- if(autoplay){
-    audio.play().then(()=>{
-      isPlaying = true;
-      playPauseBtn.textContent = "⏸";
-    }).catch(()=>{});
- }
-}
-
-playPauseBtn.addEventListener("click", () => {
-  if(audio.paused){
-    audio.play();
-    isPlaying = true;
-    playPauseBtn.textContent = "⏸";
-  }else{
-    audio.pause();
-    isPlaying = false;
-    playPauseBtn.textContent = "▶";
-  }
-});
- nextBtn.onclick = () => {
-  currentIndex = (currentIndex + 1) % songs.length;
-  loadSong(true);
-};
- prevBtn.onclick = () => {
-  currentIndex = (currentIndex - 1 + songs.length) % songs.length;
-  loadSong(true);
-};
- // ▶ cuando termina la canción → pasa a la siguiente automáticamente
-audio.addEventListener("ended", () => {
-  currentIndex = (currentIndex + 1) % songs.length;
-  loadSong(true);
-});
- progress.addEventListener("input", () => {
-  if(audio.duration){
-    audio.currentTime = (progress.value / 100) * audio.duration;
-  }
-});
- // Carga inicial SIN reproducir
-loadSong(false);
-
-
-function togglePlayer(){
-  document
-    .getElementById("playerDrop")
-    .classList.toggle("active");
- }
-
-/* Bloquear clic derecho */
-document.addEventListener('contextmenu', function(e){
-  e.preventDefault();
-});
-
-/* Bloquear selección de texto */
-document.addEventListener('selectstart', function(e){
-  e.preventDefault();
-});
- /* Bloquear arrastrar imágenes/texto */
-document.addEventListener('dragstart', function(e){
-  e.preventDefault();
-});
-
+// ===============================
+//   INTRO Y TRANSICIÓN
+// ===============================
 function enterSite(){
-  const intro = document.getElementById("intro");
-  if(!intro) return;
+  const intro = document.getElementById('intro');
+  document.body.classList.add('is-transitioning');
 
-  intro.style.pointerEvents = "none";
- // 🔥 animación de entrada
-  document.body.classList.add("entered");
-
-  // 🔥 autoplay seguro (ya hubo click)
-  audio.play().then(()=>{
-    isPlaying = true;
-    playPauseBtn.textContent = "⏸";
-  }).catch(()=>{});
- intro.style.transition = "opacity 1s ease";
-  intro.style.opacity = "0";
+  // INICIA A MÚSICA AO CLICAR
+  audio.play();
+  playPauseBtn.innerText = '⏸';
 
   setTimeout(() => {
-    intro.remove();
-  }, 1100);
- }
+    intro.style.display = 'none';
+    document.body.classList.remove('is-transitioning');
+    document.body.classList.add('entered');
+    spawnSparklesEffect();
+  }, 900);
+}
+
+function spawnSparklesEffect(){
+  // Solo visual para el entrar
+}
+
+// ===============================
+//   PLAYER LÓGICA
+// ===============================
+const playlist = [
+            { name: "Eminem - You dont know", url: "https://www.dropbox.com/scl/fi/4y0lc0fi24e9yavn17psv/Eminem-you-dont-know.mp3.mp3?rlkey=zicb6spgqe3pv0gqnz3xc24zo&st=wy1w0icm&raw=1" },
+            { name: "The Sound of Silence – Rising to the Night", url: "https://www.dropbox.com/scl/fi/2y9zhx5zjsdxg3zljc2f9/sound-of-silence.mp3.mp3?rlkey=88zg0td3loy40uxmcm9rnk1jt&st=qty8093e&raw=1" },
+            { name: "Desireless - Voyage Voyage", url: "https://www.dropbox.com/scl/fi/2y9zhx5zjsdxg3zljc2f9/sound-of-silence.mp3.mp3?rlkey=88zg0td3loy40uxmcm9rnk1jt&st=0yenl8sh&raw=1" }
+        ];
+
+let currentTrack = 0;
+const audio = new Audio();
+audio.volume = 0.5; // volume inicial
+const playPauseBtn = document.getElementById('playPauseBtn');
+const songNameDisp = document.getElementById('songName');
+const progress = document.getElementById('progress');
+const volumeSlider = document.getElementById('volumeSlider');
+
+function loadTrack(idx){
+  const track = playlist[idx];
+  audio.src = track.url;
+  songNameDisp.innerText = track.name;
+}
+
+function togglePlayer(){
+  document.getElementById('playerDrop').classList.toggle('active');
+}
+
+playPauseBtn.onclick = () => {
+  if(audio.paused){
+    audio.play();
+    playPauseBtn.innerText = '⏸';
+  } else {
+    audio.pause();
+    playPauseBtn.innerText = '▶';
+  }
+};
+
+document.getElementById('prevBtn').onclick = () => {
+  currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
+  loadTrack(currentTrack);
+  audio.play();
+  playPauseBtn.innerText = '⏸';
+};
+
+document.getElementById('nextBtn').onclick = () => {
+  currentTrack = (currentTrack + 1) % playlist.length;
+  loadTrack(currentTrack);
+  audio.play();
+  playPauseBtn.innerText = '⏸';
+};
+
+audio.ontimeupdate = () => {
+  if(audio.duration) progress.value = (audio.currentTime / audio.duration) * 100;
+};
+
+progress.oninput = () => {
+  audio.currentTime = (progress.value / 100) * audio.duration;
+};
+
+volumeSlider.oninput = () => {
+  audio.volume = volumeSlider.value;
+};
+
+loadTrack(currentTrack);
+
+// ===============================
+//   MODALES
+// ===============================
+function abrirAmigos(){ document.getElementById('friendModal').classList.add('active'); }
+function cerrarFriend(){ document.getElementById('friendModal').classList.remove('active'); }
+
+function abrirMarried(){ document.getElementById('marriedModal').classList.add('active'); }
+function cerrarMarried(){ document.getElementById('marriedModal').classList.remove('active'); }
+
+function abrirGaleria(){ document.getElementById('galeriaModal').classList.add('active'); }
+function cerrarGaleria(){ document.getElementById('galeriaModal').classList.remove('active'); }
 
 
-function spawnSparkle(){
-  const sparkle = document.createElement("div");
-  sparkle.className = "heart-sparkle";
-  sparkle.style.left = posX + "px";
-  sparkle.style.top = posY + "px";
- document.body.appendChild(sparkle);
+// ===============================
+//   GALERIA SLIDER
+// ===============================
+const slides = document.querySelectorAll('#galeriaModal .slide');
+let currentSlide = 0;
 
-  setTimeout(() => sparkle.remove(), 600);
+function updateSlider(){
+  slides.forEach((s,i)=>{
+    s.className = 'slide';
+    if(i === currentSlide) s.classList.add('active');
+    else if(i === (currentSlide - 1 + slides.length) % slides.length) s.classList.add('left');
+    else if(i === (currentSlide + 1) % slides.length) s.classList.add('right');
+  });
+}
+
+function next(){
+  currentSlide = (currentSlide + 1) % slides.length;
+  updateSlider();
+}
+
+function prev(){
+  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+  updateSlider();
+}
+
+updateSlider();
+
+// ===============================
+//   ESTRELA / CORAZONES
+// ===============================
+function spawnSparkle(e){
+  const sparkle = document.createElement('div');
+  sparkle.className = 'heart-sparkle';
+  let x = e.clientX || (e.touches && e.touches[0].clientX);
+  let y = e.clientY || (e.touches && e.touches[0].clientY);
+  sparkle.style.left = x + 'px';
+  sparkle.style.top = y + 'px';
+  document.body.appendChild(sparkle);
+  setTimeout(()=>sparkle.remove(), 600);
 }
 
 document.addEventListener('mousemove', spawnSparkle);
@@ -1828,7 +1749,9 @@ document.addEventListener("mousemove", function(e) {
         corazon.remove();
     }, 3500);
 });
- function abrirFriend(){
+
+
+function abrirFriend(){
   document.getElementById("friendModal").classList.add("active");
 }
 
@@ -1842,31 +1765,8 @@ function abrirMarried(){
 
 function cerrarMarried(){
   document.getElementById("marriedModal").classList.remove("active");
- }
-
-const slides = document.querySelectorAll('#galeriaModal .slide');
-let current = 0;
-
-function update(){
-  slides.forEach((s,i)=>{
-    s.className = 'slide';
-    if(i === current) s.classList.add('active');
-    else if(i === (current - 1 + slides.length) % slides.length) s.classList.add('left');
-    else if(i === (current + 1) % slides.length) s.classList.add('right');
-  });
- }
-
-function next(){
-  current = (current + 1) % slides.length;
-  update();
- }
-
-function prev(){
-  current = (current - 1 + slides.length) % slides.length;
-  update();
 }
 
 </script>
-
 </body>
 </html>
