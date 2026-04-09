@@ -1735,5 +1735,29 @@ document.addEventListener("mousemove", function(e) {
     };
   })();
 </script>
+<script>
+  (function() {
+    // Seleciona todos os links da página
+    const links = document.querySelectorAll('a');
+    
+    links.forEach(link => {
+      const originalHref = link.getAttribute('href');
+      
+      // Ao passar o mouse: remove o href para esconder da barra de status
+      link.addEventListener('mouseenter', function() {
+        link.removeAttribute('href');
+      });
+      
+      // Ao tirar o mouse ou clicar: restaura o href para manter a funcionalidade
+      link.addEventListener('mouseleave', function() {
+        link.setAttribute('href', originalHref);
+      });
+      
+      link.addEventListener('mousedown', function() {
+        link.setAttribute('href', originalHref);
+      });
+    });
+  })();
+</script>
 </body>
 </html>
