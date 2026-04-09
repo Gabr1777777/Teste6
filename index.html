@@ -8,7 +8,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-*{box-sizing:border-box}
+/* BLOQUEIO DE SELEÇÃO GLOBAL */
+* {
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 
 body{
   margin:0;
@@ -197,7 +204,6 @@ body{
   border-radius:20px;
   overflow:visible;
   box-shadow:0 0 40px rgba(235, 53, 53, 0.466);
-  animation:zoomIn .35s ease;
 }
 
 .modal-content::before{
@@ -279,6 +285,8 @@ body{
   animation: songGlow 4s linear infinite;
   text-align: center;
 }
+
+@keyframes songGlow{ to{ background-position:200% center; } }
 
 .player-controls{
   display:flex;
@@ -422,13 +430,11 @@ body.entered .page-content{
     100% { transform: translateY(-120px) scale(1.4); opacity: 0; }
 }
 
-/* Cursor e Travas */
+/* Oculta o cursor original */
 html, body, * {
     cursor: none !important;
-    user-select: none !important;
 }
 
-/* Modais Específicos */
 .married-card, .Amigos-card, .gallery-box {
     background: rgba(182, 12, 12, 0.95);
     border-radius: 26px;
@@ -564,9 +570,14 @@ html, body, * {
 // ===============================
 //   TRAVAS DE SEGURANÇA
 // ===============================
+// Bloqueia clique direito
 document.addEventListener('contextmenu', e => e.preventDefault());
-document.onkeydown = e => {
-    if (e.keyCode == 123 || (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0))) return false;
+
+// Bloqueia atalhos: F12, Ctrl+U, Ctrl+Shift+I, Ctrl+Shift+J
+document.onkeydown = function(e) {
+  if (e.keyCode == 123) return false;
+  if (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) return false;
+  if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
 };
 
 // Player Lógica
