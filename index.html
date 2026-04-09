@@ -8,25 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-/* Estilo do Alerta Personalizado */
-#custom-alert {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.85);
-  color: #fff;
-  padding: 20px 40px;
-  border-radius: 10px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 18px;
-  z-index: 1000000;
-  display: none;
-  border: 1px solid #ff0000;
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
-  text-align: center;
-}
-
 *{box-sizing:border-box}
 
 body{
@@ -38,10 +19,6 @@ body{
   align-items:center;
   justify-content:center;
   overflow:hidden;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
 
 .wrapper{
@@ -233,14 +210,6 @@ body{
   box-shadow: 0 0 25px rgba(204, 44, 44, 0.9), 0 0 60px rgba(170, 31, 38, 0.5);
 }
 
-.modal-content iframe{
-  width:100%;
-  height:100%;
-  border:none;
-  border-radius:20px;
-  overflow:hidden;
-}
-
 .modal-close{
   position:absolute;
   top:7px;
@@ -260,18 +229,6 @@ body{
   z-index:1000;
   box-shadow:0 6px 18px rgba(120,40,90,.45);
   transition:.25s ease;
-}
-
-@keyframes zoomIn{
-  from{transform:scale(.85); opacity:0}
-  to{transform:scale(1); opacity:1}
-}
-
-#heartsCanvas{
-  position:fixed;
-  inset:0;
-  z-index:0;
-  pointer-events:none;
 }
 
 .player-drop{
@@ -295,7 +252,6 @@ body{
 
 .player-glass{
   width:200px;
-  height:auto;
   padding:15px;
   background: rgba(223, 129, 129, 0.575);
   backdrop-filter: blur(18px);
@@ -324,10 +280,6 @@ body{
   text-align: center;
 }
 
-@keyframes songGlow{
-  to{ background-position:200% center; }
-}
-
 .player-controls{
   display:flex;
   justify-content:center;
@@ -341,12 +293,10 @@ body{
   background: rgba(255,255,255,.18);
   border:1px solid rgba(255,255,255,.3);
   cursor:pointer;
-  backdrop-filter: blur(12px);
-  transition:.3s;
   color: white;
 }
 
-.progress{
+.progress, .volume-slider{
   margin-top:14px;
   width:100%;
   accent-color:#eed7d7;
@@ -360,7 +310,6 @@ body{
   bottom:5px;
   z-index:15;
   cursor:pointer;
-  transition:.25s ease;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -379,8 +328,7 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
-  background: radial-gradient(circle at top, #5a0000, #500000, #530000);
-  overflow:hidden;
+  background: radial-gradient(circle at top,#5a0000,#500000,#530000);
 }
 
 .heart-enter{
@@ -412,7 +360,6 @@ body{
   z-index:2;
   background:linear-gradient(145deg, rgba(255,255,255,.35), rgba(255,180,190,.85));
   backdrop-filter:blur(14px);
-  box-shadow: inset 0 0 28px rgba(255,255,255,.45);
 }
 
 .heart-text{
@@ -434,6 +381,17 @@ body{
   50%{ transform:rotate(-45deg) translateY(-10px); }
 }
 
+.page-content{
+  opacity:0;
+  transform:translateY(20px);
+  transition: opacity 1.4s ease, transform 1.4s ease;
+}
+
+body.entered .page-content{
+  opacity:1;
+  transform:translateY(0);
+}
+
 .heart-sparkle{
   position: fixed;
   width: 8px;
@@ -451,17 +409,23 @@ body{
 }
 
 .corazon-xat {
-  position: fixed;
-  font-size: 16px;
-  color: #f87070;
-  animation: corazonFlotar 3.5s ease-out forwards;
-  pointer-events: none;
-  z-index: 999999;
+    position: fixed;
+    font-size: 16px;
+    color: #f87070;
+    animation: corazonFlotar 3.5s ease-out forwards;
+    pointer-events: none;
+    z-index: 999999;
 }
 
 @keyframes corazonFlotar {
-  0% { transform: translateY(0) scale(1); opacity: 1; }
-  100% { transform: translateY(-120px) scale(1.4); opacity: 0; }
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-120px) scale(1.4); opacity: 0; }
+}
+
+/* Cursor e Travas */
+html, body, * {
+    cursor: none !important;
+    user-select: none !important;
 }
 
 /* Modais Específicos */
@@ -471,34 +435,50 @@ body{
     padding: 20px;
     color: white;
     text-align: center;
+    margin: auto;
 }
 
-.slide {
-    position: absolute;
-    width: 220px;
-    height: 360px;
-    transition: .6s ease;
-    opacity: 0;
+.slider{
+  position:relative;
+  width:100%;
+  height:420px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+.slide{
+  position:absolute;
+  width:220px;
+  height:360px;
+  transition:.6s ease;
+  opacity: 0;
 }
 
 .slide.active { opacity: 1; transform: scale(1); z-index: 3; }
 .slide.left { opacity: 0.6; transform: translateX(-260px) scale(0.8); }
 .slide.right { opacity: 0.6; transform: translateX(260px) scale(0.8); }
 
-.nav {
-    position: absolute;
-    top: 50%;
-    cursor: pointer;
-    font-size: 30px;
-    z-index: 10;
+.nav{
+  position:absolute;
+  top:50%;
+  cursor:pointer;
+  font-size:30px;
+  z-index:5;
 }
-.nav.prev { left: 10px; }
-.nav.next { right: 10px; }
+.nav.prev{left:18px}
+.nav.next{right:18px}
+
+#heartsCanvas{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+}
 </style>
 </head>
 <body>
-
-<div id="custom-alert">Copyright - Acesso proibido</div>
 
 <div class="intro" id="intro">
     <div class="heart-enter" onclick="enterSite()">
@@ -526,6 +506,7 @@ body{
               <button id="nextBtn">⏭</button>
             </div>
             <input type="range" id="progress" class="progress" value="0">
+            <input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.1" value="0.5">
           </div>
         </div>
       </div>
@@ -580,24 +561,22 @@ body{
 </div>
 
 <script>
-// Travas de Segurança
-function showAlert() {
-  const alertBox = document.getElementById('custom-alert');
-  alertBox.style.display = 'block';
-  setTimeout(() => { alertBox.style.display = 'none'; }, 2000);
-}
+// ===============================
+//   TRAVAS DE SEGURANÇA
+// ===============================
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.onkeydown = e => {
+    if (e.keyCode == 123 || (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0))) return false;
+};
 
-document.addEventListener('contextmenu', e => { e.preventDefault(); showAlert(); });
-document.onkeydown = e => { if (e.ctrlKey && e.keyCode === 85 || e.keyCode === 123) { showAlert(); return false; } };
-document.onselectstart = e => { e.preventDefault(); showAlert(); };
-
-// Player de Música
+// Player Lógica
 const playlist = [
     { name: "Eminem - You dont know", url: "https://www.dropbox.com/scl/fi/4y0lc0fi24e9yavn17psv/Eminem-you-dont-know.mp3.mp3?rlkey=zicb6spgqe3pv0gqnz3xc24zo&st=wy1w0icm&raw=1" },
     { name: "The Sound of Silence", url: "https://www.dropbox.com/scl/fi/2y9zhx5zjsdxg3zljc2f9/sound-of-silence.mp3.mp3?rlkey=88zg0td3loy40uxmcm9rnk1jt&st=qty8093e&raw=1" }
 ];
 let currentTrack = 0;
 const audio = new Audio();
+audio.volume = 0.5;
 
 function loadTrack(idx) {
     audio.src = playlist[idx].url;
@@ -613,6 +592,12 @@ document.getElementById('playPauseBtn').onclick = () => {
 
 document.getElementById('nextBtn').onclick = () => { currentTrack = (currentTrack + 1) % playlist.length; loadTrack(currentTrack); audio.play(); };
 document.getElementById('prevBtn').onclick = () => { currentTrack = (currentTrack - 1 + playlist.length) % playlist.length; loadTrack(currentTrack); audio.play(); };
+
+audio.ontimeupdate = () => {
+  if(audio.duration) document.getElementById('progress').value = (audio.currentTime / audio.duration) * 100;
+};
+
+document.getElementById('volumeSlider').oninput = (e) => { audio.volume = e.target.value; };
 
 // Modais
 function abrirGaleria() { document.getElementById('galeriaModal').classList.add('active'); }
@@ -635,6 +620,7 @@ function typeWriter() {
 
 function enterSite() {
   document.getElementById("intro").style.display = "none";
+  document.body.classList.add('entered');
   loadTrack(currentTrack);
   audio.play();
   typeWriter();
@@ -665,6 +651,42 @@ document.addEventListener('mousemove', e => {
     setTimeout(() => corazon.remove(), 2000);
 });
 
+// Chuva de Corações (Canvas)
+const canvas = document.getElementById('heartsCanvas');
+const ctx = canvas.getContext('2d');
+let hearts = [];
+function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+window.addEventListener('resize', resize);
+resize();
+
+class ParticleHeart {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height - canvas.height;
+    this.size = Math.random() * 8 + 4;
+    this.speed = Math.random() * 2 + 1;
+    this.opacity = Math.random() * 0.5 + 0.2;
+  }
+  update() {
+    this.y += this.speed;
+    if (this.y > canvas.height) this.reset();
+  }
+  draw() {
+    ctx.fillStyle = `rgba(255, 100, 100, ${this.opacity})`;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size / 2, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+for (let i = 0; i < 50; i++) hearts.push(new ParticleHeart());
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  hearts.forEach(h => { h.update(); h.draw(); });
+  requestAnimationFrame(animate);
+}
+animate();
+loadTrack(currentTrack);
 updateSlider();
 </script>
 </body>
