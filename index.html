@@ -125,13 +125,18 @@ body{
 
 
 
-.avatar{
+.avatar-wrap{
   position:absolute;
   top:20px;
   left:50%;
   transform:translateX(-50%);
   width:160px;
   height:160px;
+}
+
+.avatar{
+  width:100%;
+  height:100%;
   border-radius:50%;
   overflow:hidden;
   border:4px solid rgba(255,255,255,.8);
@@ -494,104 +499,31 @@ img{
   user-select:none;
 }
 
-
+/* FIX: POSICIONAMIENTO BANDEIRA BRASIL */
 .home-icon{
   position:absolute;
-  width:38px;
-  height:38px;
-  border-radius:50%;
-
-  right:-6px;
-  bottom:-6px;
-  /* FONDO MÁS SÓLIDO */
-  background: linear-gradient(
-    145deg,
-    #ffd6e1,
-    #f4a8b8
-  );
-  border:2px solid #fff;
-
-  box-shadow:
-    0 4px 12px rgba(150,50,60,.45),
-    inset 0 0 6px rgba(255,255,255,.8);
-
-  z-index:10;
-  cursor:pointer;
-  transition:.25s ease;
-}
-
-/* icono */
-.home-icon::before{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:17px;
-  color:#9c2f42;
-}
-
-.home-icon:hover{
-  transform:scale(1.15);
-}
-
-/* icono fuera del círculo */
-.home-icon{
-  position:absolute;
-  width:20px;
-  height:20px;
-  border-radius:50%;
-
-  top:150px;
-  left: 20px;
-
+  width:35px;
+  height:35px;
+  right:0;
+  bottom:5px;
   z-index:15;
   cursor:pointer;
   transition:.25s ease;
-
   display:flex;
   align-items:center;
   justify-content:center;
 }
 
 .home-icon img{
-  width:30px;      /* tamaño del icono */
-  height:30px;
-  pointer-events:none;
+  width:100%;
+  height:100%;
+  object-fit: contain;
 }
 
 .home-icon:hover{
   transform:scale(1.15);
 }
 
-/* icono fuera del círculo */
-.forum-icon{
-  position:absolute;
-  width:20px;
-  height:20px;
-  border-radius:50%;
-
-  top:120px;
-  left: -6px;
-
-  z-index:15;
-  cursor:pointer;
-  transition:.25s ease;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.forum-icon img{
-  width:30px;      /* tamaño del icono */
-  height:30px;
-  pointer-events:none;
-}
-
-.forum-icon:hover{
-  transform:scale(1.15);
-}
 /* ===============================
    INTRO PRINCIPAL
 ================================ */
@@ -1050,7 +982,7 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
 }
 
 /* ===============================
-   👥 Amigos INTEGRADO
+   👥 AMIGOS INTEGRADO - FIX 
 ================================ */
 
 .Amigos-card{
@@ -1071,6 +1003,7 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
   inset:14px;
   border-radius:22px;
   border:1.5px solid rgba(255,255,255,.75);
+  pointer-events: none;
 }
 
 .Amigos-title{
@@ -1088,6 +1021,8 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
   max-height:360px;
   overflow-y:auto;
   padding-right:6px;
+  position: relative;
+  z-index: 5;
 }
 
 .friend-item{
@@ -1108,11 +1043,9 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
   gap:10px;
 }
 
-.Amigos-card .avatar{
+.friend-avatar-circle{
   width:36px;
   height:36px;
-  left: 10px;
-  top: 0px;
   border-radius:50%;
   background:linear-gradient(145deg,#ffd6e1,#f4a8b8);
   display:flex;
@@ -1386,7 +1319,6 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
       <div class="avatar-wrap">
         <div class="avatar">
           <img src="https://xatimg.com/image/3jmO98mi8QCG.jpg">
-     
         </div>
         <a href="https://xat.com" target="_blank" class="home-icon" title="Brasil">
           <img src="https://xatimg.com/image/fIeImPfcKjZq.png" alt="Home">
@@ -1439,20 +1371,7 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
         
         <div class="friend-item">
           <div class="friend-left">
-            <div class="avatar">Na</div>
-            <div class="friend-info">
-      
-         <div class="friend-name">Name</div>
-              <div class="friend-id">12345</div>
-            </div>
-          </div>
-          <a class="friend-btn" href="https://xat.me/12345" target="_blank"> XAT.ME </a>
-        </div>
-
-        <div class="friend-item">
-          <div class="friend-left">
-           
-  <div class="avatar">Na</div>
+            <div class="friend-avatar-circle">Na</div>
             <div class="friend-info">
               <div class="friend-name">Name</div>
               <div class="friend-id">12345</div>
@@ -1462,37 +1381,11 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
         </div>
 
         <div class="friend-item">
- 
           <div class="friend-left">
-            <div class="avatar">Na</div>
+            <div class="friend-avatar-circle">Na</div>
             <div class="friend-info">
               <div class="friend-name">Name</div>
               <div class="friend-id">12345</div>
-            </div>
-          </div>
-          <a class="friend-btn" 
- href="https://xat.me/12345" target="_blank"> XAT.ME </a>
-        </div>
-
-        <div class="friend-item">
-          <div class="friend-left">
-            <div class="avatar">Na</div>
-            <div class="friend-info">
-              <div class="friend-name">Name</div>
-              <div class="friend-id">12345</div>
-            </div>
- 
-          </div>
-          <a class="friend-btn" href="https://xat.me/12345" target="_blank"> XAT.ME </a>
-        </div>
-
-        <div class="friend-item">
-          <div class="friend-left">
-            <div class="avatar">Na</div>
-            <div class="friend-info">
-              <div class="friend-name">Name</div>
-       
-        <div class="friend-id">12345</div>
             </div>
           </div>
           <a class="friend-btn" href="https://xat.me/12345" target="_blank"> XAT.ME </a>
@@ -1500,9 +1393,19 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
 
         <div class="friend-item">
           <div class="friend-left">
-            <div class="avatar">Na</div>
+            <div class="friend-avatar-circle">Na</div>
             <div class="friend-info">
- 
+              <div class="friend-name">Name</div>
+              <div class="friend-id">12345</div>
+            </div>
+          </div>
+          <a class="friend-btn" href="https://xat.me/12345" target="_blank"> XAT.ME </a>
+        </div>
+
+        <div class="friend-item">
+          <div class="friend-left">
+            <div class="friend-avatar-circle">Na</div>
+            <div class="friend-info">
               <div class="friend-name">Name</div>
               <div class="friend-id">12345</div>
             </div>
@@ -1609,20 +1512,20 @@ function animateHearts() {
 }
 initHearts();
 animateHearts();
+
 // ===============================
 //   INTRO Y TRANSICIÓN
 // ===============================
 function enterSite(){
   const intro = document.getElementById('intro');
   document.body.classList.add('is-transitioning');
-// INICIA A MÚSICA AO CLICAR
   audio.play();
   playPauseBtn.innerText = '⏸';
  setTimeout(() => {
     intro.style.display = 'none';
     document.body.classList.remove('is-transitioning');
     document.body.classList.add('entered');
-    typeWriter(); // Inicia digitação ao entrar
+    typeWriter();
   }, 900);
 }
 
@@ -1636,7 +1539,7 @@ const playlist = [
         ];
  let currentTrack = 0;
 const audio = new Audio();
-audio.volume = 0.5; // volume inicial
+audio.volume = 0.5;
 const playPauseBtn = document.getElementById('playPauseBtn');
  const songNameDisp = document.getElementById('songName');
 const progress = document.getElementById('progress');
@@ -1652,7 +1555,6 @@ function togglePlayer(){
   document.getElementById('playerDrop').classList.toggle('active');
 }
 
-// ALTERAÇÃO: Tocar próxima automaticamente ao acabar a música
 audio.onended = () => {
     currentTrack = (currentTrack + 1) % playlist.length;
     loadTrack(currentTrack);
@@ -1697,16 +1599,14 @@ loadTrack(currentTrack);
 // ===============================
 //   MODALES
 // ===============================
-function abrirAmigos(){ document.getElementById('friendModal').classList.add('active');
- }
+function abrirAmigos(){ document.getElementById('friendModal').classList.add('active'); }
 function cerrarFriend(){ document.getElementById('friendModal').classList.remove('active'); }
 
 function abrirMarried(){ document.getElementById('marriedModal').classList.add('active'); }
 function cerrarMarried(){ document.getElementById('marriedModal').classList.remove('active'); }
 
 function abrirGaleria(){ document.getElementById('galeriaModal').classList.add('active'); }
-function cerrarGaleria(){ document.getElementById('galeriaModal').classList.remove('active');
- }
+function cerrarGaleria(){ document.getElementById('galeriaModal').classList.remove('active'); }
 
 
 // ===============================
@@ -1734,50 +1634,31 @@ function prev(){
 }
 
 updateSlider();
+
 // ===============================
 //   ESTRELA / CORAZONES
 // ===============================
 function spawnSparkle(e){
   const sparkle = document.createElement('div');
   sparkle.className = 'heart-sparkle';
- let x = e.clientX || (e.touches && e.touches[0].clientX);
+  let x = e.clientX || (e.touches && e.touches[0].clientX);
   let y = e.clientY || (e.touches && e.touches[0].clientY);
- sparkle.style.left = x + 'px';
+  sparkle.style.left = x + 'px';
   sparkle.style.top = y + 'px';
   document.body.appendChild(sparkle);
   setTimeout(()=>sparkle.remove(), 600);
 }
 
 document.addEventListener('mousemove', spawnSparkle);
-window.addEventListener("message", spawnSparkle);
- document.addEventListener("mousemove", function(e) {
+document.addEventListener("mousemove", function(e) {
     let corazon = document.createElement("div");
     corazon.className = "corazon-xat";
     corazon.innerHTML = "❤";
     corazon.style.left = (e.clientX + 5) + "px";
     corazon.style.top = (e.clientY + 5) + "px";
-
     document.body.appendChild(corazon);
-
-    setTimeout(() => {
-        corazon.remove();
-    }, 3500);
+    setTimeout(() => { corazon.remove(); }, 3500);
 });
- function abrirFriend(){
-  document.getElementById("friendModal").classList.add("active");
-}
-
-function cerrarFriend(){
-  document.getElementById("friendModal").classList.remove("active");
-}
-
-function abrirMarried(){
-  document.getElementById("marriedModal").classList.add("active");
-}
-
-function cerrarMarried(){
-  document.getElementById("marriedModal").classList.remove("active");
-}
 
 </script>
 </body>
