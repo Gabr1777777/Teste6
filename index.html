@@ -55,15 +55,12 @@ body{
   font-size:13px;
   color:#fcdcdf;
   text-decoration:none;
-
   box-shadow:
     inset 0 0 1px rgba(250, 58, 58, 0.6),  /* brillo glass */
     0 4px 10px rgba(128, 40, 40, 0.25);
-
   transition:transform .25s ease,
              box-shadow .25s ease,
              border-color .25s ease;
-
   font-family:'Poppins',sans-serif;
   overflow:hidden;
 }
@@ -117,7 +114,8 @@ body{
 .card::before{
   content:"";
   position:absolute;
-  inset:14px;                 /* separación del borde */
+  inset:14px;
+  /* separación del borde */
   border-radius:22px;
   border:1.5px solid rgba(255,255,255,.75);
   pointer-events:none;
@@ -173,13 +171,14 @@ body{
   left:50%;
   transform:translateX(-50%);
   width:80%;
- white-space: pre-wrap; /* permite saltos y wrapping natural */
+ white-space: pre-wrap;
+  /* permite saltos y wrapping natural */
 
   padding:14px 16px;                 /* espacio interno del texto */
   font-size:11px;
   line-height:1.6;
   color:#fcf3f4;
-   text-align:center;
+  text-align:center;
   background:rgba(224, 102, 102, 0.596);  /* fondo suave */
   backdrop-filter:blur(10px);
   border-radius:16px;
@@ -219,7 +218,6 @@ body{
 
   /* MÁS TRANSPARENTE */
   background: rgba(255, 180, 210, 0.08);
-
   /* BLUR MÁS SUAVE */
   backdrop-filter: blur(7px);
 
@@ -246,7 +244,8 @@ body{
   max-width:650px;
   height:530px;
   border-radius:20px;
-  overflow:visible;   /* ✅ CLAVE */
+  overflow:visible;
+  /* ✅ CLAVE */
   box-shadow:0 0 40px rgba(235, 53, 53, 0.466);
   animation:zoomIn .35s ease;
 }
@@ -313,7 +312,8 @@ body{
   position:fixed;
   inset:0;
   z-index:0;            /* detrás de todo */
-  pointer-events:none;  /* no molesta clicks */
+  pointer-events:none;
+  /* no molesta clicks */
 }
 
 /* ===============================
@@ -334,7 +334,8 @@ body{
 }
 
 .player-slide.active{
-  transform: translateX(0); /* VISIBLE */
+  transform: translateX(0);
+  /* VISIBLE */
 }
 
 
@@ -359,9 +360,11 @@ body{
   background: rgba(223, 129, 129, 0.575);
   backdrop-filter: blur(18px);
 
-  border-radius:20px;                     /* ✔ bordes iguales */
+  border-radius:20px;
+  /* ✔ bordes iguales */
   border:1px solid rgba(255,255,255,.25);
-  margin-left:-1px;                       /* ✔ unión perfecta */
+  margin-left:-1px;
+  /* ✔ unión perfecta */
 
   box-shadow:
     inset 0 0 20px rgba(255,255,255,.15),
@@ -426,9 +429,11 @@ body{
 /* CONTENEDOR DEL PLAYER */
 .player-drop{
   position:fixed;               /* 🔥 SALE del menú */
-  left:calc(140% - 210px);       /* alineado con la card */
+  left:calc(140% - 210px);
+  /* alineado con la card */
   top:42%;                      /* misma altura del menú */
-  margin-top:120px;             /* cae hacia abajo */
+  margin-top:120px;
+  /* cae hacia abajo */
   width:260px;
 
   transform: translateY(-15px);
@@ -450,7 +455,8 @@ body{
 
 /* 🔧 FIX: el wrapper del reproductor debe comportarse como un botón */
 .menu-left .btn-player{
-  width:110px;            /* igual que .menu-left a */
+  width:110px;
+  /* igual que .menu-left a */
   display:block;
 }
 
@@ -474,14 +480,12 @@ img{
 
   right:-6px;
   bottom:-6px;
-
   /* FONDO MÁS SÓLIDO */
   background: linear-gradient(
     145deg,
     #ffd6e1,
     #f4a8b8
   );
-
   border:2px solid #fff;
 
   box-shadow:
@@ -624,7 +628,6 @@ img{
   filter:
     drop-shadow(0 0 25px rgba(216, 23, 23, 0.8))
     drop-shadow(0 0 60px rgba(192, 18, 18, 0.6));
-
   transition:.35s ease;
 }
 
@@ -639,7 +642,8 @@ img{
   width:130px;
   height:130px;
   border-radius:50%;
-  z-index:1; /* 👈 base */
+  z-index:1;
+  /* 👈 base */
 
   background:linear-gradient(
     145deg,
@@ -674,7 +678,6 @@ img{
     rgba(255,255,255,.35),
     rgba(255,180,190,.85)
   );
-
   backdrop-filter:blur(14px);
 
   box-shadow:
@@ -730,7 +733,6 @@ img{
   text-shadow:
     0 2px 3px rgba(255,255,255,.95),
     0 0 12px rgba(247, 88, 88, 0.9);
-
   pointer-events:none;
 }
 
@@ -748,7 +750,8 @@ img{
   position:absolute;
   width:14px;
   height:14px;
-  z-index:3; /* debajo del texto */
+  z-index:3;
+  /* debajo del texto */
 
   background:linear-gradient(145deg,#ffd6dc,#fa6e6e);
   transform:rotate(-45deg);
@@ -772,7 +775,8 @@ img{
 /* POSICIONES */
 .mh1{ left:-26px; top:22px; animation-delay:.2s; }
 .mh2{ right:-26px; top:38px; animation-delay:.4s; }
-.mh3{ left:18px; bottom:-28px; animation-delay:.6s; }
+.mh3{ left:18px; bottom:-28px;
+  animation-delay:.6s; }
 .mh4{ right:20px; bottom:-32px; animation-delay:.8s; }
 
 /* ===============================
@@ -784,13 +788,15 @@ img{
 }
 
 @keyframes heartFloat{
-  0%,100%{ transform:rotate(-45deg) translateY(0); }
+  0%,100%{ transform:rotate(-45deg) translateY(0);
+  }
   50%{ transform:rotate(-45deg) translateY(-10px); }
 }
 
 @keyframes floatMini{
   0%,100%{ transform:rotate(-45deg) translateY(0); opacity:.6; }
-  50%{ transform:rotate(-45deg) translateY(-8px); opacity:1; }
+  50%{ transform:rotate(-45deg) translateY(-8px); opacity:1;
+  }
 }
 
 /* ===============================
@@ -842,7 +848,7 @@ body.is-transitioning #page-transition{
 body.entered .page-content{
   opacity:1;
   transform:translateY(0);
-}
+  }
 
 
 
@@ -864,7 +870,7 @@ body.entered{
  pointer-events:none;
   z-index: 99998;
   animation: sparkleFade .6s ease-out forwards;
-}
+  }
 
 @keyframes sparkleFade{
   from{
@@ -882,7 +888,7 @@ body.entered{
    =============================== */
 html, body{
   pointer-events: auto !important;
-}
+  }
 
 /* CORAZONES ELEGANTES */
 .corazon-xat {
@@ -890,26 +896,26 @@ html, body{
     font-size: 16px;
     color: #f87070;
     animation: corazonFlotar 3.5s ease-out forwards;
-    pointer-events: none;
+  pointer-events: none;
     z-index: 999999;
     text-shadow: 0 0 6px rgba(219, 87, 87, 0.6);
-}
+  }
 
 @keyframes corazonFlotar {
     0% {
         transform: translateY(0) scale(1);
         opacity: 1;
-    }
+  }
     100% {
         transform: translateY(-120px) scale(1.4);
         opacity: 0;
-    }
+  }
 }
 
 
 html, body, a, div, span, p, img, button, input, textarea, select, * {
     cursor: none !important;
-}
+  }
 
 
 /* ===============================
@@ -977,7 +983,7 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
 .married-heart span{
   font-size:18px;
   color:#da0d0d;
-}
+  }
 
 .married-card .name{
   position:absolute;
@@ -996,7 +1002,7 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
   transform:translateX(-50%);
   font-size:12px;
   color:#ffdede;
-}
+  }
 
 .married-card .message{
   position:absolute;
@@ -1035,7 +1041,7 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
 
 .married-card .xatme a:hover{
   transform:scale(1.15);
-}
+  }
 
 /* ===============================
    👥 FRIENDS INTEGRADO
@@ -1094,7 +1100,7 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
   display:flex;
   align-items:center;
   gap:10px;
-}
+  }
 
 .friends-card .avatar{
   width:36px;
@@ -1130,7 +1136,7 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
   color:#9c2f42;
   text-decoration:none;
   transition:.25s ease;
-}
+  }
 
 .friend-btn:hover{
   transform:scale(1.1);
@@ -1145,13 +1151,13 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
   position:relative;
   width:100%;
   height:100%;
-
   background:rgba(218, 46, 46, 0.55);
 
   padding:22px;
 
   border-radius:24px;            /* 🔴 REDONDEO REAL */
-  overflow:hidden;               /* 🔴 CLAVE PARA NO DEFORMAR */
+  overflow:hidden;
+  /* 🔴 CLAVE PARA NO DEFORMAR */
 
   backdrop-filter:blur(18px);
   box-shadow:0 15px 35px rgba(120,20,20,.45);
@@ -1162,7 +1168,8 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
   content:"";
   position:absolute;
   inset:12px;
-  border-radius:20px;             /* proporcional al exterior */
+  border-radius:20px;
+  /* proporcional al exterior */
   border:1.1px solid rgba(255,255,255,.75);
   pointer-events:none;
 }
@@ -1171,7 +1178,8 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
 .gallery-header{
   position: relative;
   text-align: center;
-  height: 110px;       /* 🔒 ALTURA FIJA */
+  height: 110px;
+  /* 🔒 ALTURA FIJA */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1200,7 +1208,7 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
   text-shadow:
     0 0 6px rgba(252, 236, 236, 0.8),
     0 0 14px rgba(255, 232, 232, 0.6);
-}
+  }
 
 .gallery-header span{
   font-weight:200;
@@ -1212,7 +1220,8 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
   position:absolute;
   left:0;
   right:0;
-  bottom: 22px;        /* 🔒 POSICIÓN FIJA */
+  bottom: 22px;
+  /* 🔒 POSICIÓN FIJA */
   height:1px;
   z-index:5;
 
@@ -1224,7 +1233,6 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
     rgba(253,213,213,.8),
     transparent
   );
-
   box-shadow:0 0 8px rgba(255, 180, 180, 0.8);
 }
 
@@ -1238,7 +1246,7 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
   align-items:center;
   justify-content:center;
   overflow:hidden;
-    transform: translateY(-10px);
+  transform: translateY(-10px);
 }
 
 /* SLIDE */
@@ -1253,7 +1261,7 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
   filter:brightness(.45);
   transform:scale(.75);
   box-shadow:0 12px 30px rgba(0,0,0,.25);
-}
+  }
 
 
 
@@ -1276,7 +1284,7 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
     0 0 0 2px rgba(255,255,255,.9),
     0 0 35px rgba(247, 168, 168, 0.9);
   z-index:3;
-}
+  }
 
 
 /* IZQ / DER */
@@ -1327,18 +1335,14 @@ opacity:.6;
 
 <body>
 
-<!-- INTRO -->
 <div class="intro" id="intro">
   <div class="heart-wrapper">
     <div class="heart-enter" onclick="enterSite()">
 
-      <!-- corazón -->
       <div class="heart-glass"></div>
 
-      <!-- TEXTO ARRIBA -->
       <span class="heart-text">Entrar</span>
 
-      <!-- mini corazones -->
       <i class="mini-heart mh1"></i>
       <i class="mini-heart mh2"></i>
       <i class="mini-heart mh3"></i>
@@ -1348,26 +1352,23 @@ opacity:.6;
   </div>
 </div>
 
-<!-- TRANSICIÓN PREMIUM -->
 <div id="page-transition"></div>
 
-<!-- ===============================
-     CONTENIDO PRINCIPAL
-================================ -->
 <div class="page-content">
 
   <canvas id="heartsCanvas"></canvas>
 
   <div class="wrapper">
 
-    <!-- BOTONES -->
     <div class="menu-left">
  <a href="#" onclick="abrirMarried(); return false;">♡ Married ♡</a>
   <a href="#" onclick="abrirFriend(); return false;">♡ Friend ♡</a>
-      <a href="#" onclick="abrirGaleria(); return false;">♡ Galeria ♡</a>
+      <a href="#" onclick="abrirGaleria();
+return false;">♡ Galeria ♡</a>
 
       <div class="btn-player">
-        <a href="#" onclick="togglePlayer(); return false;">♡ Musica ♡</a>
+        <a href="#" onclick="togglePlayer();
+return false;">♡ Musica ♡</a>
 
         <div class="player-drop" id="playerDrop">
           <div class="player-glass">
@@ -1377,7 +1378,8 @@ opacity:.6;
             <div class="player-controls">
               <button id="prevBtn">⏮</button>
               <button id="playPauseBtn">▶</button>
-              <button id="nextBtn">⏭</button>
+     
+          <button id="nextBtn">⏭</button>
             </div>
 
             <input type="range" id="progress" class="progress" value="0">
@@ -1386,42 +1388,35 @@ opacity:.6;
       </div>
     </div>
 
-<!-- CARD -->
 <div class="card">
 
-  <!-- AVATAR -->
   <div class="avatar-wrap">
     <div class="avatar">
-      <img src="https://xatimg.com/image/2M7QTBqoHovv.png">
+      <img src="HCn75BA.jpeg">
     </div>
 
-    <!-- ICONO HOME -->
     <a href="https://xat.com" target="_blank" class="home-icon" title="Argentina">
-      <img src="https://xatimg.com/image/Vi79A8RPQwnf.png" alt="Home">
+      <img src="HCn75BA.jpeg" alt="Home">
     </a>
     
   </div>
 
-  <!-- TEXTO -->
   <div class="name">♥ 𝓓𝓪𝔂 ♥</div>
   <div class="subtitle">♡ Bienvenidos a mi xatspace ♡</div>
 
   <div class="bio" id="typingText">
  ᴇʟ ᴏʙᴊᴇᴛɪᴠᴏ ᴇꜱ ꜱɪᴍᴘʟᴇ: ꜱᴇʀ ᴍᴇᴊᴏʀ Qᴜᴇ ᴀʏᴇʀ.
-  </div>
+</div>
 
   
-  <!-- FIRMA -->
   <div class="firma">
     <img src="Firma">
   </div>
 
-  <!-- FOOTER -->
   <div class="footer">✦ By Fabricio ✦</div>
 
 </div>
 
-<!-- MODAL GALERIA -->
 <div class="modal-overlay" id="galeriaModal">
   <div class="modal-content">
 
@@ -1436,28 +1431,22 @@ opacity:.6;
       <div class="slider" id="slider">
 
         <div class="slide active">
-          <img src="https://xatimg.com/image/vo8vZADfd8Na.png">
-        </div>
+          <img src="HCn75BA.jpeg">
+     
+    </div>
 
         <div class="slide right">
-          <img src="https://xatimg.com/image/jkqHkqHEGzFb.png">
+          <img src="HCn75BA.jpeg">
         </div>
 
         <div class="slide left">
-          <img src="https://xatimg.com/image/pOoVjRhJt0sl.png">
+          <img src="HCn75BA.jpeg">
         </div>
 
         <div class="slide right">
-          <img src="https://xatimg.com/image/T6OiPQxLOaDJ.png">
+          <img src="HCn75BA.jpeg">
         </div> 
-        <!-- AGREGA MÁS SLIDES AQUÍ -->
-        <!--
-        <div class="slide">
-          <img src="URL_IMAGEN">
         </div>
-        -->
-
-      </div>
 
       <div class="nav prev" onclick="prev()">❮</div>
       <div class="nav next" onclick="next()">❯</div>
@@ -1468,7 +1457,6 @@ opacity:.6;
 </div>
 
 
-<!-- MODAL FRIEND -->
 <div class="modal-overlay" id="friendModal">
   <div class="modal-content">
 
@@ -1476,17 +1464,18 @@ opacity:.6;
 
     <div class="friends-card">
 
-      <div class="friends-title">♡ Friends ♡</div>
+   
+    <div class="friends-title">♡ Friends ♡</div>
 
       <div class="friends-list">
 
-        <!-- FRIEND 1 -->
         <div class="friend-item">
           <div class="friend-left">
             <div class="avatar">Lx</div>
             <div class="friend-info">
               <div class="friend-name">Lex</div>
-              <div class="friend-id">200003</div>
+              <div 
+class="friend-id">200003</div>
             </div>
           </div>
 
@@ -1495,9 +1484,9 @@ opacity:.6;
           </a>
         </div>
 
-        <!-- FRIEND 2 -->
         <div class="friend-item">
           <div class="friend-left">
+    
             <div class="avatar">Ky</div>
             <div class="friend-info">
               <div class="friend-name">Key</div>
@@ -1507,16 +1496,17 @@ opacity:.6;
 
           <a class="friend-btn" href="https://xat.me/148527139" target="_blank">
             XAT.ME
+ 
           </a>
         </div>
 
-        <!-- FRIEND 3 -->
         <div class="friend-item">
           <div class="friend-left">
             <div class="avatar">Jk</div>
             <div class="friend-info">
               <div class="friend-name">Joker</div>
-              <div class="friend-id">843870831</div>
+           
+    <div class="friend-id">843870831</div>
             </div>
           </div>
 
@@ -1525,9 +1515,9 @@ opacity:.6;
           </a>
         </div>
 
-        <!-- FRIEND 4 -->
         <div class="friend-item">
-          <div class="friend-left">
+          <div 
+class="friend-left">
             <div class="avatar">Ln</div>
             <div class="friend-info">
               <div class="friend-name">Leonel</div>
@@ -1536,17 +1526,18 @@ opacity:.6;
           </div>
 
           <a class="friend-btn" href="https://xat.me/1536087746" target="_blank">
-            XAT.ME
+         
+    XAT.ME
           </a>
         </div>
 
-        <!-- FRIEND 5 -->
         <div class="friend-item">
           <div class="friend-left">
             <div class="avatar">Gb</div>
             <div class="friend-info">
               <div class="friend-name">Gaby</div>
-              <div class="friend-id">7700077</div>
+       
+        <div class="friend-id">7700077</div>
             </div>
           </div>
 
@@ -1555,9 +1546,9 @@ opacity:.6;
           </a>
         </div>
 
-        <!-- FRIEND 6 -->
         <div class="friend-item">
-          <div class="friend-left">
+       
+    <div class="friend-left">
             <div class="avatar">Kn</div>
             <div class="friend-info">
               <div class="friend-name">Kaneh</div>
@@ -1566,7 +1557,8 @@ opacity:.6;
           </div>
 
           <a class="friend-btn" href="https://xat.me/96319421" target="_blank">
-            XAT.ME
+     
+        XAT.ME
           </a>
         </div>
 
@@ -1577,7 +1569,6 @@ opacity:.6;
   </div>
 </div>
 
-<!-- MODAL MARRIED -->
 <div class="modal-overlay" id="marriedModal">
   <div class="modal-content">
 
@@ -1587,9 +1578,10 @@ opacity:.6;
 
       <div class="avatar-wrap">
         <div class="avatar">
-          <img src="https://xatimg.com/image/CRcetboPhT1f.jpg" alt="Pareja">
+          <img src="HCn75BA.jpeg" alt="Pareja">
         </div>
-        <div class="married-heart"><span>❤</span></div>
+        
+ <div class="married-heart"><span>❤</span></div>
       </div>
 
       <div class="name">Fabricio</div>
@@ -1613,23 +1605,22 @@ opacity:.6;
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const element = document.getElementById("typingText");
-  if (!element) return;
+if (!element) return;
 
   // Evita que se ejecute más de una vez
   if (element.dataset.typed === "true") return;
-  element.dataset.typed = "true";
+element.dataset.typed = "true";
 
   const text = element.textContent.trim();
   element.textContent = "";
 
   let index = 0;
   const speed = 65;
-
-  function typeEffect() {
+function typeEffect() {
     if (index < text.length) {
       element.textContent += text.charAt(index);
       index++;
-      setTimeout(typeEffect, speed);
+setTimeout(typeEffect, speed);
     }
   }
 
@@ -1657,11 +1648,11 @@ window.addEventListener("resize", resize);
 
 const hearts = [];
 const HEART_COUNT = 40;
-
 function createHeart(startTop = true){
   return {
     x: Math.random() * w,
-    y: startTop ? -30 : Math.random() * h,
+    y: startTop ?
+-30 : Math.random() * h,
     size: 6 + Math.random() * 6,
     speed: 0.25 + Math.random() * 0.6,
     drift: (Math.random() - 0.5) * 0.2,
@@ -1677,20 +1668,18 @@ for(let i = 0; i < HEART_COUNT; i++){
 function drawHeart(x, y, size, alpha, scaleX = 1.1, scaleY = 0.75){
   ctx.save();
   ctx.translate(x, y);
-
-  /* escala general + aplanado */
+/* escala general + aplanado */
   ctx.scale(size * scaleX, size * scaleY);
 
   ctx.beginPath();
   ctx.moveTo(0, 0);
-  ctx.bezierCurveTo(-0.5, -0.6, -1.4, 0.3, 0, 1.6);
+ctx.bezierCurveTo(-0.5, -0.6, -1.4, 0.3, 0, 1.6);
   ctx.bezierCurveTo(1.4, 0.3, 0.5, -0.6, 0, 0);
   ctx.closePath();
 
   ctx.fillStyle = `rgba(255, 215, 225, ${alpha})`;
   ctx.fill();
-
-  ctx.restore();
+ctx.restore();
 }
 
 
@@ -1708,8 +1697,7 @@ function animate(){
       hearts[i] = createHeart(true);
     }
   });
-
-  requestAnimationFrame(animate);
+requestAnimationFrame(animate);
 }
 
 animate();
@@ -1719,7 +1707,6 @@ let songs = [
   { name: "Anuel AA - Amanece", url: "music/Anuel AA - Amanece.mp3" },
   { name: "Matisse - Reik - Eres Tu", url: "music/Matisse - Reik - Eres Tu.mp3" }
 ];
-
 let audio = new Audio();
 let currentIndex = 0;
 let isPlaying = false;
@@ -1729,17 +1716,15 @@ const nextBtn = document.getElementById("nextBtn");
 const prevBtn = document.getElementById("prevBtn");
 const songName = document.getElementById("songName");
 const progress = document.getElementById("progress");
-
 function loadSong(autoplay = false){
   audio.src = songs[currentIndex].url;
   songName.textContent = songs[currentIndex].name;
-
-  if(autoplay){
+if(autoplay){
     audio.play().then(()=>{
       isPlaying = true;
       playPauseBtn.textContent = "⏸";
     }).catch(()=>{});
-  }
+}
 }
 
 playPauseBtn.addEventListener("click", () => {
@@ -1753,30 +1738,24 @@ playPauseBtn.addEventListener("click", () => {
     playPauseBtn.textContent = "▶";
   }
 });
-
 nextBtn.onclick = () => {
   currentIndex = (currentIndex + 1) % songs.length;
   loadSong(true);
 };
-
 prevBtn.onclick = () => {
   currentIndex = (currentIndex - 1 + songs.length) % songs.length;
   loadSong(true);
 };
-
 // ▶ cuando termina la canción → pasa a la siguiente automáticamente
 audio.addEventListener("ended", () => {
   currentIndex = (currentIndex + 1) % songs.length;
   loadSong(true);
 });
-
-
 progress.addEventListener("input", () => {
   if(audio.duration){
     audio.currentTime = (progress.value / 100) * audio.duration;
   }
 });
-
 // Carga inicial SIN reproducir
 loadSong(false);
 
@@ -1796,7 +1775,6 @@ document.addEventListener('contextmenu', function(e){
 document.addEventListener('selectstart', function(e){
   e.preventDefault();
 });
-
 /* Bloquear arrastrar imágenes/texto */
 document.addEventListener('dragstart', function(e){
   e.preventDefault();
@@ -1807,8 +1785,7 @@ function enterSite(){
   if(!intro) return;
 
   intro.style.pointerEvents = "none";
-
-  // 🔥 animación de entrada
+// 🔥 animación de entrada
   document.body.classList.add("entered");
 
   // 🔥 autoplay seguro (ya hubo click)
@@ -1816,8 +1793,7 @@ function enterSite(){
     isPlaying = true;
     playPauseBtn.textContent = "⏸";
   }).catch(()=>{});
-
-  intro.style.transition = "opacity 1s ease";
+intro.style.transition = "opacity 1s ease";
   intro.style.opacity = "0";
 
   setTimeout(() => {
@@ -1831,7 +1807,7 @@ function spawnSparkle(){
   sparkle.className = "heart-sparkle";
   sparkle.style.left = posX + "px";
   sparkle.style.top = posY + "px";
-  document.body.appendChild(sparkle);
+document.body.appendChild(sparkle);
 
   setTimeout(() => sparkle.remove(), 600);
 }
@@ -1853,8 +1829,6 @@ document.addEventListener("mousemove", function(e) {
         corazon.remove();
     }, 3500);
 });
-
-
 function abrirFriend(){
   document.getElementById("friendModal").classList.add("active");
 }
