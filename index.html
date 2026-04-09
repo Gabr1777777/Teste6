@@ -517,6 +517,7 @@ body{
   100%{transform:translate(var(--x),var(--y)) scale(0); opacity:0}
 }
 
+
 .corazon-xat {
     position: fixed;
     color: #6b0000;
@@ -530,6 +531,7 @@ body{
     0% { opacity: 1; transform: translateY(0) scale(1); }
     100% { opacity: 0; transform: translateY(-50px) scale(1.5); }
 }
+
 
 /* ANIMACIONES */
 .animated-song{
@@ -564,6 +566,7 @@ body{
   </div>
 
   <div class="card">
+    
     <div class="player-drop" id="playerDrop">
       <div class="player-glass">
         <div class="music-title">Musica</div>
@@ -572,7 +575,7 @@ body{
           <button id="prevBtn">⏮</button>
           <button id="playPauseBtn">▶</button>
           <button id="nextBtn">⏭</button>
-          <button id="volumeBtn">🔉</button> </div>
+        </div>
         <input type="range" id="progress" class="progress" value="0">
       </div>
     </div>
@@ -659,7 +662,7 @@ body{
 </div>
 
 <script>
-// --- PLAYLIST ATUALIZADA ---
+// PLAYLIST ATUALIZADA
 let songs = [
   { name: "Eminem - You dont know", url: "https://www.dropbox.com/scl/fi/4y0lc0fi24e9yavn17psv/Eminem-you-dont-know.mp3.mp3?rlkey=zicb6spgqe3pv0gqnz3xc24zo&st=wy1w0icm&raw=1" },
   { name: "The Sound of Silence – Rising to the Night", url: "https://www.dropbox.com/scl/fi/2y9zhx5zjsdxg3zljc2f9/sound-of-silence.mp3.mp3?rlkey=88zg0td3loy40uxmcm9rnk1jt&st=qty8093e&raw=1" },
@@ -673,75 +676,39 @@ let isPlaying = false;
 const playPauseBtn = document.getElementById("playPauseBtn");
 const nextBtn = document.getElementById("nextBtn");
 const prevBtn = document.getElementById("prevBtn");
-const volumeBtn = document.getElementById("volumeBtn"); 
 const songName = document.getElementById("songName");
 const progress = document.getElementById("progress");
 
-function loadSong(autoplay = false){
-  audio.src = songs[currentIndex].url;
-  songName.textContent = songs[currentIndex].name;
-  if(autoplay){
-    audio.play().then(()=>{
-      isPlaying = true;
-      playPauseBtn.textContent = "⏸";
-    }).catch(()=>{});
-  }
+function loadSong(index){
+  audio.src = songs[index].url;
+  songName.textContent = songs[index].name;
 }
 
-playPauseBtn.addEventListener("click", () => {
+playPauseBtn.onclick = () => {
   if(audio.paused){
     audio.play();
-    isPlaying = true;
     playPauseBtn.textContent = "⏸";
-  }else{
-    audio.pause();
-    isPlaying = false;
-    playPauseBtn.textContent = "▶";
-  }
-});
-
-// Lógica para diminuir volume ao clicar
-volumeBtn.onclick = () => {
-  if (audio.volume > 0.5) {
-    audio.volume = 0.5;
-    volumeBtn.textContent = "🔅";
-  } else if (audio.volume > 0) {
-    audio.volume = 0;
-    volumeBtn.textContent = "🔇";
   } else {
-    audio.volume = 1;
-    volumeBtn.textContent = "🔉";
+    audio.pause();
+    playPauseBtn.textContent = "▶";
   }
 };
 
 nextBtn.onclick = () => {
   currentIndex = (currentIndex + 1) % songs.length;
-  loadSong(true);
+  loadSong(currentIndex);
+  audio.play();
+  playPauseBtn.textContent = "⏸";
 };
 
 prevBtn.onclick = () => {
   currentIndex = (currentIndex - 1 + songs.length) % songs.length;
-  loadSong(true);
+  loadSong(currentIndex);
+  audio.play();
+  playPauseBtn.textContent = "⏸";
 };
 
-audio.addEventListener("ended", () => {
-  currentIndex = (currentIndex + 1) % songs.length;
-  loadSong(true);
-});
-
-progress.addEventListener("input", () => {
-  if(audio.duration){
-    audio.currentTime = (progress.value / 100) * audio.duration;
-  }
-});
-
-audio.addEventListener("timeupdate", () => {
-  if (audio.duration) {
-    progress.value = (audio.currentTime / audio.duration) * 100;
-  }
-});
-
-loadSong(false);
+loadSong(currentIndex);
 
 function togglePlayer(){
   document.getElementById("playerDrop").classList.toggle("active");
@@ -749,29 +716,20 @@ function togglePlayer(){
 
 function enterSite(){
   const intro = document.getElementById("intro");
-  if(!intro) return;
-
-  intro.style.pointerEvents = "none";
-  document.body.classList.add("entered");
-
-  // TOCA MÚSICA AO CLICAR EM ENTRAR
-  audio.play().then(()=>{
-    isPlaying = true;
-    playPauseBtn.textContent = "⏸";
-  }).catch((err)=> console.log("Erro ao tocar:", err));
-
-  intro.style.transition = "opacity 1s ease";
   intro.style.opacity = "0";
-
   setTimeout(() => {
-    intro.remove();
-  }, 1100);
+    intro.style.display = "none";
+    // Tocar música ao clicar em entrar
+    audio.play();
+    playPauseBtn.textContent = "⏸";
+  }, 1000);
 }
 
-/* Restante do código original */
+/* Bloquear acciones */
 document.addEventListener('contextmenu', e => e.preventDefault());
 document.addEventListener('selectstart', e => e.preventDefault());
 document.addEventListener('dragstart', e => e.preventDefault());
+
 
 function spawnSparkle(e){
   const sparkle = document.createElement("div");
@@ -798,6 +756,7 @@ function spawnSparkle(e){
 document.addEventListener('mousemove', spawnSparkle);
 window.addEventListener("message", spawnSparkle);
 
+
 document.addEventListener("mousemove", function(e) {
     let corazon = document.createElement("div");
     corazon.className = "corazon-xat";
@@ -811,6 +770,7 @@ document.addEventListener("mousemove", function(e) {
         corazon.remove();
     }, 3500);
 });
+
 
 function abrirFriend(){
   document.getElementById("friendModal").classList.add("active");
