@@ -850,11 +850,6 @@ html, body{
 }
 
 
-html, body, a, div, span, p, img, button, input, textarea, select, * {
-    cursor: none !important;
-}
-
-
 /* ===============================
    💍 MARRIED INTEGRADO
 ================================ */
@@ -1485,31 +1480,21 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
       }
     };
 
-    // FUNÇÃO PARA BLOQUEAR BARRA DE STATUS EM LINKS
-    function travaBarraStatus() {
+    // BLOQUEIO DA BARRA DE STATUS (SOMENTE ISSO ADICIONADO)
+    function travaStatus() {
       const links = document.querySelectorAll('a');
       links.forEach(link => {
-        const urlOriginal = link.getAttribute('href');
-        if (urlOriginal && urlOriginal !== "#" && urlOriginal !== "") {
-          link.addEventListener('mouseover', function() {
-            link.removeAttribute('href');
-          });
-          link.addEventListener('mouseout', function() {
-            link.setAttribute('href', urlOriginal);
-          });
-          link.addEventListener('mousedown', function() {
-            link.setAttribute('href', urlOriginal);
-          });
+        const href = link.getAttribute('href');
+        if (href && href !== '#' && href !== '') {
+          link.addEventListener('mouseover', () => link.removeAttribute('href'));
+          link.addEventListener('mouseout', () => link.setAttribute('href', href));
+          link.addEventListener('mousedown', () => link.setAttribute('href', href));
         }
       });
     }
-    // Inicia a trava após carregar o DOM
-    window.addEventListener('DOMContentLoaded', travaBarraStatus);
+    window.addEventListener('DOMContentLoaded', travaStatus);
   })();
 
-  // ===============================
-  // EFECTO DE DIGITAÇÃO
-  // ===============================
   const textToType = "Quando tiver finalizado uma meta, não olhe para ela como a linha de chegada; olhe como o punto de partida para sua próxima conquista.";
   let index = 0;
   function typeWriter() {
@@ -1520,9 +1505,6 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
     }
   }
 
-  // ===============================
-  // EFECTO LLUVIA DE CORAZONES
-  // ===============================
   const canvas = document.getElementById('heartsCanvas');
   const ctx = canvas.getContext('2d');
   let hearts = [];
@@ -1566,9 +1548,6 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
     requestAnimationFrame(animateHearts);
   }
 
-  // ===============================
-  // LÓGICA DE NAVEGACIÓN
-  // ===============================
   function enterSite() {
     document.body.classList.add('is-transitioning');
     setTimeout(() => {
@@ -1581,9 +1560,6 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
     }, 900);
   }
 
-  // ===============================
-  // MODALES
-  // ===============================
   function abrirGaleria() { document.getElementById('galeriaModal').classList.add('active'); }
   function cerrarGaleria() { document.getElementById('galeriaModal').classList.remove('active'); }
   function abrirFriend() { document.getElementById('friendModal').classList.add('active'); }
@@ -1591,13 +1567,9 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
   function abrirMarried() { document.getElementById('marriedModal').classList.add('active'); }
   function cerrarMarried() { document.getElementById('marriedModal').classList.remove('active'); }
 
-  // Alias para manter compatibilidade com as chamadas do HTML original
   window.abrirAmigos = abrirFriend;
   window.cerrarFriend = cerrarFriend;
 
-  // ===============================
-  // SLIDER GALERIA
-  // ===============================
   let currentSlide = 0;
   function updateSlider() {
     const slides = document.querySelectorAll('.slide');
@@ -1619,9 +1591,6 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
     updateSlider();
   }
 
-  // ===============================
-  // PLAYER LÓGICA
-  // ===============================
   const playlist = [
     { name: "Die With A Smile", url: "https://ia801309.us.archive.org/16/items/lady-gaga-bruno-mars-die-with-a-smile/Lady%20Gaga%20%26%20Bruno%20Mars%20-%20Die%20With%20A%20Smile.mp3" }
   ];
@@ -1645,7 +1614,6 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
   
   window.onload = () => { songName.innerText = playlist[trackIndex].name; };
 
-  // Efeito Sparkle (Mouse Trail)
   document.addEventListener('mousemove', (e) => {
     const sparkle = document.createElement('div');
     sparkle.className = 'heart-sparkle';
