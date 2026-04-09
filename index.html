@@ -1661,5 +1661,79 @@ document.addEventListener("mousemove", function(e) {
 });
 
 </script>
+<style>
+  /* Alerta Personalizado (Cores Bordô/Vermelho) */
+  #custom-alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(60, 0, 0, 0.98); /* Fundo bordô profundo */
+    color: #ffcccc; /* Texto rosa claro */
+    padding: 22px 45px;
+    border-radius: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    z-index: 9999999; /* Garante que fique acima de tudo */
+    display: none;
+    border: 2px solid #ff1a1a; /* Borda vermelha viva */
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.6); /* Brilho neon */
+    text-align: center;
+    pointer-events: none;
+    letter-spacing: 1px;
+  }
+
+  /* Trava de Seleção de Texto Global */
+  * {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+</style>
+
+<div id="custom-alert">Copyright - Acesso Proibido</div>
+
+<script>
+  (function() {
+    function mostrarAlerta() {
+      const alerta = document.getElementById('custom-alert');
+      alerta.style.display = 'block';
+      
+      // Some após 2 segundos exatamente
+      setTimeout(() => {
+        alerta.style.display = 'none';
+      }, 2000);
+    }
+
+    // Trava 1: Botão Direito
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+      mostrarAlerta();
+    });
+
+    // Trava 2: Teclado (Ctrl+U, F12, Ctrl+Shift+I/J)
+    document.onkeydown = function(e) {
+      // Bloqueia F12
+      if (e.keyCode == 123) {
+        mostrarAlerta();
+        return false;
+      }
+      
+      // Bloqueia Ctrl+U (Código Fonte)
+      if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+        mostrarAlerta();
+        return false;
+      }
+      
+      // Bloqueia Inspecionar Elemento (Ctrl+Shift+I ou J)
+      if (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) {
+        mostrarAlerta();
+        return false;
+      }
+    };
+  })();
+</script>
 </body>
 </html>
