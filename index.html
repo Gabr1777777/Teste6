@@ -54,137 +54,30 @@ body {
 
 .copy-alert h2 { margin: 0; font-size: 22px; letter-spacing: 2px; }
 
-/* REVESTIMENTO DOS CÓDIGOS ANTERIORES */
-.wrapper{
-  position:relative;
-  display:flex;
-  align-items:center;
-}
-
-.menu-left{
-  position:absolute;
-  left:-100px;
-  top:36%;
-  transform:translateY(-50%);
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-  z-index:10;
-}
-
-.menu-left a{
-  position:relative;
-  width:110px;
-  padding:10px 0;
-  text-align:center;
-  background:rgba(238, 29, 43, 0.712);
-  backdrop-filter:blur(14px);
-  border-radius:10px;
-  border:1px solid rgba(241, 49, 49, 0.35);
-  font-size:13px;
-  color:#fcdcdf;
-  text-decoration:none;
-  box-shadow: inset 0 0 1px rgba(250, 58, 58, 0.6), 0 4px 10px rgba(128, 40, 40, 0.25);
-  transition:transform .25s ease, box-shadow .25s ease;
-  font-family:'Poppins',sans-serif;
-  overflow:hidden;
-}
-
+/* --- RESTAURADO DO ORIGINAL --- */
+.wrapper{ position:relative; display:flex; align-items:center; }
+.menu-left{ position:absolute; left:-100px; top:36%; transform:translateY(-50%); display:flex; flex-direction:column; gap:12px; z-index:10; }
+.menu-left a{ position:relative; width:110px; padding:10px 0; text-align:center; background:rgba(238, 29, 43, 0.712); backdrop-filter:blur(14px); border-radius:10px; border:1px solid rgba(241, 49, 49, 0.35); font-size:13px; color:#fcdcdf; text-decoration:none; box-shadow: inset 0 0 1px rgba(250, 58, 58, 0.6), 0 4px 10px rgba(128, 40, 40, 0.25); transition:transform .25s ease, box-shadow .25s ease; font-family:'Poppins',sans-serif; overflow:hidden; }
 .menu-left a:hover{ transform:translateX(-10px); box-shadow:0 2px 2px rgba(248, 114, 114, 0.795); }
 
-.card{
-  position:relative;
-  width:420px;
-  height:560px;
-  border-radius:30px;
-  background:rgba(216, 29, 29, 0.959);
-  backdrop-filter:blur(20px);
-  box-shadow:0 15px 10px rgba(141, 15, 15, 0.637);
-  z-index:2;
-  overflow:hidden;
-}
-
-.card::before{
-  content:"";
-  position:absolute;
-  inset:14px;
-  border-radius:22px;
-  border:1.5px solid rgba(255,255,255,.75);
-  pointer-events:none;
-}
-
-.avatar-wrap{
-  position:absolute;
-  top:20px;
-  left:50%;
-  transform:translateX(-50%);
-  width:160px;
-  height:160px;
-}
-
-.avatar{
-  width:100%;
-  height:100%;
-  border-radius:50%;
-  overflow:hidden;
-  border:4px solid rgba(255,255,255,.8);
-}
-
+.card{ position:relative; width:420px; height:560px; border-radius:30px; background:rgba(216, 29, 29, 0.959); backdrop-filter:blur(20px); box-shadow:0 15px 10px rgba(141, 15, 15, 0.637); z-index:2; overflow:hidden; }
+.card::before{ content:""; position:absolute; inset:14px; border-radius:22px; border:1.5px solid rgba(255,255,255,.75); pointer-events:none; }
+.avatar-wrap{ position:absolute; top:40px; left:50%; transform:translateX(-50%); width:160px; height:160px; }
+.avatar{ position:relative; width:100%; height:100%; border-radius:50%; overflow:hidden; border:4px solid rgba(255,255,255,.8); }
 .avatar img{ width:100%; height:100%; object-fit:cover; }
-
-.home-icon{
-  position:absolute;
-  width:35px;
-  height:35px;
-  right:0;
-  bottom:5px;
-  z-index:15;
-  cursor:pointer;
-  transition:.25s ease;
-}
-
-.home-icon img{ width:100%; height:100%; object-fit: contain; }
-
-.name{
-  position:absolute;
-  top:230px;
-  left:50%;
-  transform:translateX(-50%);
-  font-family:'Playfair Display',serif;
-  font-size:28px;
-  color:#ffe8e8;
-}
-
-.bio{
-  position:absolute;
-  top:315px;
-  left:50%;
-  transform:translateX(-50%);
-  width:80%;
-  white-space: pre-wrap;
-  padding:14px 16px;
-  font-size:11px;
-  line-height:1.6;
-  color:#fcf3f4;
-  text-align:center;
-  background:rgba(224, 102, 102, 0.596);
-  backdrop-filter:blur(10px);
-  border-radius:16px;
-}
-
+.home-icon{ position:absolute; width:20px; height:20px; border-radius:50%; top:150px; left: 20px; z-index:15; cursor:pointer; transition:.25s ease; display:flex; align-items:center; justify-content:center; }
+.home-icon img{ width:30px; height:30px; }
+.name{ position:absolute; top:230px; left:50%; transform:translateX(-50%); font-family:'Playfair Display',serif; font-size:28px; color:#ffe8e8; }
+.bio{ position:absolute; top:315px; left:50%; transform:translateX(-50%); width:80%; white-space: pre-wrap; padding:14px 16px; font-size:11px; line-height:1.6; color:#fcf3f4; text-align:center; background:rgba(224, 102, 102, 0.596); backdrop-filter:blur(10px); border-radius:16px; }
 .footer{ position:absolute; bottom:30px; left:50%; transform:translateX(-50%); font-size:8px; color:#fdeef0aa; }
 
-/* MODAIS E PLAYER (MANTIDOS) */
+/* MODAIS */
 .modal-overlay{ position:fixed; inset:0; background: rgba(255, 180, 210, 0.08); backdrop-filter: blur(7px); display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:.35s ease; z-index:999; }
 .modal-overlay.active{ opacity:1; pointer-events:auto; }
-.modal-content{ position:relative; width:90%; max-width:650px; height:530px; border-radius:20px; box-shadow:0 0 40px rgba(235, 53, 53, 0.466); background: #800000; }
+.modal-content{ position:relative; width:90%; max-width:650px; height:530px; border-radius:20px; background: #800000; box-shadow:0 0 40px rgba(235, 53, 53, 0.466); }
 .modal-close{ position:absolute; top:7px; right:10px; width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,.75); color:#f33242; display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:1000; }
 
-/* PLAYER DROP */
-.player-drop{ position:fixed; left:calc(140% - 210px); top:42%; margin-top:120px; width:260px; transform: translateY(-15px); opacity:0; pointer-events:none; transition:.4s ease; z-index:1000; }
-.player-drop.active{ transform: translateY(0); opacity:1; pointer-events:auto; }
-.player-glass{ width:200px; padding:15px; background: rgba(223, 129, 129, 0.575); backdrop-filter: blur(18px); border-radius:20px; border:1px solid rgba(255,255,255,.25); }
-
+/* INTRO */
 .intro{ position:fixed; inset:0; z-index:99999; display:flex; align-items:center; justify-content:center; background: radial-gradient(circle at top, #5a0000, #500000); }
 .heart-enter{ position:relative; width:130px; height:130px; cursor:pointer; transform:rotate(-45deg); display:flex; align-items:center; justify-content:center; }
 .heart-enter::before, .heart-enter::after{ content:""; position:absolute; width:130px; height:130px; border-radius:50%; background:linear-gradient(145deg, #fa8888, #ce1616); }
@@ -196,11 +89,24 @@ body {
 .corazon-xat { position: fixed; font-size: 16px; color: #f87070; animation: corazonFlotar 3.5s ease-out forwards; pointer-events: none; z-index: 999999; }
 @keyframes corazonFlotar { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-120px); opacity: 0; } }
 
-/* AMIGOS LISTA */
-.Amigos-card{ width:420px; height:520px; border-radius:30px; background:rgba(173, 9, 9, 0.95); position:relative; overflow:hidden; padding:20px; }
-.friend-item{ background:rgba(243, 107, 107, 0.55); border-radius:18px; padding:10px; display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
-.friend-avatar-circle{ width:36px; height:36px; border-radius:50%; background:#ffd6e1; display:flex; align-items:center; justify-content:center; color:#9c2f42; }
+/* AMIGOS */
+.Amigos-card{ width:420px; height:520px; border-radius:30px; background:rgba(173, 9, 9, 0.95); position:relative; overflow:hidden; padding:20px; margin:auto; }
+.friend-item{ background:rgba(243, 107, 107, 0.55); border-radius:18px; padding:10px; display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
 
+/* PLAYER */
+.player-drop{ position:fixed; left:calc(140% - 210px); top:42%; margin-top:120px; width:260px; transform: translateY(-15px); opacity:0; pointer-events:none; transition:.4s ease; z-index:1000; }
+.player-drop.active{ transform: translateY(0); opacity:1; pointer-events:auto; }
+.player-glass{ width:200px; padding:15px; background: rgba(223, 129, 129, 0.575); backdrop-filter: blur(18px); border-radius:20px; border:1px solid rgba(255,255,255,.25); }
+
+/* GALERIA SLIDER */
+.gallery-box{ position:relative; width:100%; height:100%; background:rgba(218, 46, 46, 0.55); padding:22px; border-radius:24px; overflow:hidden; }
+.slider{ position:relative; width:100%; height:420px; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.slide{ position:absolute; width:220px; height:360px; border-radius:18px; overflow:hidden; transition:.6s ease; filter:brightness(.45); transform:scale(.75); opacity:0; }
+.slide.active{ transform:scale(1); filter:brightness(1); opacity:1; z-index:3; }
+.slide.left{ opacity:.6; transform:translateX(-260px) scale(.8); }
+.slide.right{ opacity:.6; transform:translateX(260px) scale(.8); }
+.nav{ position:absolute; top:50%; transform:translateY(-50%); width:46px; height:46px; border-radius:50%; background:rgba(253, 225, 228, 0.692); color:#e95f66; display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:5; }
+.nav.prev{left:18px} .nav.next{right:18px}
 </style>
 </head>
 <body oncontextmenu="return false;">
@@ -231,9 +137,9 @@ body {
             <div style="color:#ffd6d6; font-size:10px; text-align:center;">MUSICA</div>
             <div id="songName" style="color:#fff; font-size:12px; text-align:center; margin:10px 0;">Cargando...</div>
             <div style="display:flex; justify-content:center; gap:10px;">
-              <button onclick="audio.previous()">⏮</button>
+              <button id="prevBtn">⏮</button>
               <button id="playPauseBtn">▶</button>
-              <button onclick="audio.next()">⏭</button>
+              <button id="nextBtn">⏭</button>
             </div>
           </div>
         </div>
@@ -245,9 +151,9 @@ body {
         <div class="avatar">
           <img src="https://xatimg.com/image/3jmO98mi8QCG.jpg">
         </div>
-        <div class="home-icon">
+        <a href="https://xat.com" target="_blank" class="home-icon">
           <img src="https://xatimg.com/image/fIeImPfcKjZq.png">
-        </div>
+        </a>
       </div>
       <div class="name">♥ Name ♥</div>
       <div class="bio" id="typingText"></div>
@@ -260,14 +166,29 @@ body {
   <div class="modal-content">
     <span class="modal-close" onclick="document.getElementById('friendModal').classList.remove('active')">×</span>
     <div class="Amigos-card">
-        <div style="text-align:center; color:#fff; font-size:20px; margin-bottom:20px;">♡ Amigos ♡</div>
+        <div style="text-align:center; color:#f7d4d4; font-size:26px; margin-bottom:20px; font-family:'Playfair Display',serif;">♡ Amigos ♡</div>
         <div class="friend-item">
             <div style="display:flex; align-items:center; gap:10px;">
-                <div class="friend-avatar-circle">Na</div>
-                <div style="color:#fff">Name <br><small>12345</small></div>
+                <div style="width:36px; height:36px; border-radius:50%; background:#ffd6e1; display:flex; align-items:center; justify-content:center; color:#9c2f42;">Na</div>
+                <div style="color:#fdeef0">Name <br><small>12345</small></div>
             </div>
-            <a href="#" style="color:#fff; text-decoration:none; background:#ce1616; padding:5px 10px; border-radius:10px;">XAT.ME</a>
+            <a href="https://xat.me/12345" target="_blank" style="color:#9c2f42; text-decoration:none; background:#ffd6e1; padding:6px 14px; border-radius:20px; font-size:11px;">XAT.ME</a>
         </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="galeriaModal">
+  <div class="modal-content">
+    <span class="modal-close" onclick="document.getElementById('galeriaModal').classList.remove('active')">×</span>
+    <div class="gallery-box">
+       <div class="slider" id="slider">
+          <div class="slide active"><img src="https://xatimg.com/image/7BIxmBkfxdGu.jpg"></div>
+          <div class="slide right"><img src="https://xatimg.com/image/7BIxmBkfxdGu.jpg"></div>
+          <div class="slide left"><img src="https://xatimg.com/image/7BIxmBkfxdGu.jpg"></div>
+       </div>
+       <div class="nav prev" onclick="changeSlide(-1)">❮</div>
+       <div class="nav next" onclick="changeSlide(1)">❯</div>
     </div>
   </div>
 </div>
@@ -282,28 +203,17 @@ function showCopyAlert() {
   setTimeout(() => alert.classList.remove('show'), 2000);
 }
 
-// Bloqueio de Botão Direito
-document.addEventListener('contextmenu', e => {
-  e.preventDefault();
-  showCopyAlert();
-});
+document.addEventListener('contextmenu', e => { e.preventDefault(); showCopyAlert(); });
 
-// Bloqueio de Teclas (Ctrl+U, F12, Ctrl+Shift+I, etc)
 document.addEventListener('keydown', e => {
-  if (
-    e.keyCode === 123 || // F12
-    (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || // Ctrl+Shift+I/J
-    (e.ctrlKey && e.keyCode === 85) || // Ctrl+U
-    (e.ctrlKey && e.keyCode === 83)    // Ctrl+S
-  ) {
+  if (e.keyCode === 123 || (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83 || (e.shiftKey && (e.keyCode === 73 || e.keyCode === 74))))) {
     e.preventDefault();
     showCopyAlert();
-    return false;
   }
 });
 
 // ===============================
-//   RESTANTE DO CÓDIGO (MANTIDO)
+//   FUNCIONALIDADES ORIGINAIS
 // ===============================
 const textToType = "Quando tiver finalizado uma meta, não olhe para ela como a linha de chegada; olhe como o punto de partida para sua próxima conquista.";
 let index = 0;
@@ -322,6 +232,7 @@ function enterSite(){
 
 function togglePlayer(){ document.getElementById('playerDrop').classList.toggle('active'); }
 function abrirAmigos(){ document.getElementById('friendModal').classList.add('active'); }
+function abrirGaleria(){ document.getElementById('galeriaModal').classList.add('active'); }
 
 // Efeito de corações no mouse
 document.addEventListener("mousemove", function(e) {
@@ -333,6 +244,15 @@ document.addEventListener("mousemove", function(e) {
     document.body.appendChild(corazon);
     setTimeout(() => { corazon.remove(); }, 2000);
 });
+
+// Slider Simples
+let currentSlide = 0;
+function changeSlide(n) {
+    const slides = document.querySelectorAll('.slide');
+    slides[currentSlide].className = 'slide';
+    currentSlide = (currentSlide + n + slides.length) % slides.length;
+    slides[currentSlide].className = 'slide active';
+}
 </script>
 
 </body>
