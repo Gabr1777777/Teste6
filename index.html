@@ -1522,7 +1522,7 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
           <span>💍</span>
         </div>
       </div>
-      <div class="name">Name</div>
+      <div class="name">Gabr</div>
       <div class="id">12345</div>
       <div class="message">
         Cada momento ao seu lado é um presente que guardo com todo carinho no meu coração.
@@ -1535,6 +1535,61 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
 </div>
 
 <script>
+// ===============================
+//   EFECTO LLUVIA DE CORAZONES
+// ===============================
+const canvas = document.getElementById('heartsCanvas');
+const ctx = canvas.getContext('2d');
+let hearts = [];
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resize);
+resize();
+
+class ParticleHeart {
+  constructor() {
+    this.reset();
+  }
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height - canvas.height;
+    this.size = Math.random() * 8 + 4;
+    this.speed = Math.random() * 2 + 1;
+    this.opacity = Math.random() * 0.5 + 0.2;
+    this.swing = Math.random() * 2;
+  }
+  draw() {
+    ctx.fillStyle = `rgba(255, 100, 100, ${this.opacity})`;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size / 2, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  update() {
+    this.y += this.speed;
+    this.x += Math.sin(this.y / 30) * this.swing;
+    if (this.y > canvas.height) this.reset();
+  }
+}
+
+function initHearts() {
+  hearts = [];
+  for (let i = 0; i < 50; i++) hearts.push(new ParticleHeart());
+}
+
+function animateHearts() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  hearts.forEach(h => {
+    h.update();
+    h.draw();
+  });
+  requestAnimationFrame(animateHearts);
+}
+initHearts();
+animateHearts();
+
 // ===============================
 //   INTRO Y TRANSICIÓN
 // ===============================
