@@ -355,8 +355,8 @@ body{
 
 .player-glass{
   width:200px;
-  height:40%;
-  padding:4px;
+  height:auto;
+  padding:15px;
   background: rgba(223, 129, 129, 0.575);
   backdrop-filter: blur(18px);
 
@@ -417,11 +417,24 @@ body{
   box-shadow:0 0 25px rgba(253, 235, 235, 0.8);
 }
 
-.progress{
+.progress, .volume-slider{
   margin-top:14px;
   width:100%;
   accent-color:#eed7d7;
 }
+
+.volume-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 5px;
+}
+
+.volume-icon {
+  font-size: 12px;
+  color: #fff;
+}
+
 .btn-player{
   position:relative;
 }
@@ -1362,6 +1375,10 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
               <button id="nextBtn">⏭</button>
             </div>
             <input type="range" id="progress" class="progress" value="0">
+            <div class="volume-container">
+              <span class="volume-icon">🔊</span>
+              <input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.1" value="0.5">
+            </div>
           </div>
         </div>
       </div>
@@ -1380,7 +1397,7 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
       <div class="name">♥ Name ♥</div>
       <div class="subtitle">Bem vindos ao meu Xatspace</div>
       <div class="bio" id="typingText">
-        Quando tiver finalizado uma meta, não olhe para ela como a linha de chegada; olhe como o ponto de partida para sua próxima conquista.
+        Quando tiver finalizado uma meta, não olhe para ela como a linha de chegada; olhe como o punto de partida para sua próxima conquista.
       </div>
 
       <div class="footer">✦ By:Gabr ✦</div>
@@ -1505,7 +1522,7 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
           <span>💍</span>
         </div>
       </div>
-      <div class="name">Gabr</div>
+      <div class="name">Name</div>
       <div class="id">12345</div>
       <div class="message">
         Cada momento ao seu lado é um presente que guardo com todo carinho no meu coração.
@@ -1524,6 +1541,10 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
 function enterSite(){
   const intro = document.getElementById('intro');
   document.body.classList.add('is-transitioning');
+
+  // INICIA A MÚSICA AO CLICAR
+  audio.play();
+  playPauseBtn.innerText = '⏸';
 
   setTimeout(() => {
     intro.style.display = 'none';
@@ -1548,9 +1569,11 @@ const playlist = [
 
 let currentTrack = 0;
 const audio = new Audio();
+audio.volume = 0.5; // volume inicial
 const playPauseBtn = document.getElementById('playPauseBtn');
 const songNameDisp = document.getElementById('songName');
 const progress = document.getElementById('progress');
+const volumeSlider = document.getElementById('volumeSlider');
 
 function loadTrack(idx){
   const track = playlist[idx];
@@ -1592,6 +1615,10 @@ audio.ontimeupdate = () => {
 
 progress.oninput = () => {
   audio.currentTime = (progress.value / 100) * audio.duration;
+};
+
+volumeSlider.oninput = () => {
+  audio.volume = volumeSlider.value;
 };
 
 loadTrack(currentTrack);
