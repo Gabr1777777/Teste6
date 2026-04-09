@@ -176,7 +176,7 @@ body{
   left:50%;
   transform:translateX(-50%);
   width:80%;
-  white-space: pre-wrap;
+ white-space: pre-wrap;
   /* permite saltos y wrapping natural */
 
   padding:14px 16px;                 /* espacio interno del texto */
@@ -187,6 +187,7 @@ body{
   background:rgba(224, 102, 102, 0.596);  /* fondo suave */
   backdrop-filter:blur(10px);
   border-radius:16px;
+
   box-shadow:0 2px 4px rgba(68, 30, 30, 0.12);
 }
 
@@ -726,14 +727,14 @@ img{
 
 @keyframes heartFloat{
   0%,100%{ transform:rotate(-45deg) translateY(0);
-  }
+}
   50%{ transform:rotate(-45deg) translateY(-10px); }
 }
 
 @keyframes floatMini{
   0%,100%{ transform:rotate(-45deg) translateY(0); opacity:.6; }
   50%{ transform:rotate(-45deg) translateY(-8px); opacity:1;
-  }
+}
 }
 
 /* ===============================
@@ -817,7 +818,7 @@ body.entered{
   to{
     opacity:0;
     transform: scale(2.5);
-  }
+}
 }
 
 /* ===============================
@@ -842,11 +843,16 @@ html, body{
     0% {
         transform: translateY(0) scale(1);
         opacity: 1;
-    }
+}
     100% {
         transform: translateY(-120px) scale(1.4);
         opacity: 0;
-    }
+}
+}
+
+
+html, body, a, div, span, p, img, button, input, textarea, select, * {
+    cursor: none !important;
 }
 
 
@@ -1228,6 +1234,7 @@ html, body{
   z-index:1;
 }
 
+
 /* FLECHAS */
 .nav{
   position:absolute;
@@ -1257,40 +1264,7 @@ html, body{
 .nav.prev{left:18px}
 .nav.next{right:18px}
 
-  /* Estilos do Alerta Customizado */
-  #custom-alert {
-    display: none;
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(139, 0, 0, 0.85);
-    color: #fff;
-    padding: 12px 25px;
-    border-radius: 50px;
-    z-index: 1000000;
-    font-family: 'Poppins', sans-serif;
-    font-size: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(10px);
-    /* Sombras baseadas no snippet original */
-    box-shadow: 0 0 30px rgba(255, 0, 0, 0.6); 
-    text-align: center;
-    pointer-events: none;
-    letter-spacing: 1px;
-  }
-
-  /* Trava de Seleção de Texto Global */
-  * {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
 </style>
-
-<div id="custom-alert">Copyright - Acesso Proibido</div>
-
 </head>
 <body>
 
@@ -1311,8 +1285,8 @@ html, body{
 
 <div class="page-content">
   <canvas id="heartsCanvas"></canvas>
+
   <div class="wrapper">
-    
     <div class="menu-left">
       <a href="#" onclick="abrirMarried(); return false;">♡ Married ♡</a>
       <a href="#" onclick="abrirAmigos(); return false;">♡ Amigos ♡</a>
@@ -1324,6 +1298,7 @@ html, body{
           <div class="player-glass">
             <div class="music-title">Musica</div>
             <div class="song-name animated-song" id="songName">Cargando...</div>
+            
             <div class="player-controls">
               <button id="prevBtn">⏮</button>
               <button id="playPauseBtn">▶</button>
@@ -1331,6 +1306,7 @@ html, body{
             </div>
             <input type="range" id="progress" class="progress" value="0">
             <div class="volume-container">
+             
               <span class="volume-icon">🔊</span>
               <input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.1" value="0.5">
             </div>
@@ -1348,9 +1324,11 @@ html, body{
           <img src="https://xatimg.com/image/fIeImPfcKjZq.png" alt="Home">
         </a>
       </div>
+
       <div class="name">♥ Name ♥</div>
       <div class="subtitle">Bem vindos ao meu Xatspace</div>
       <div class="bio" id="typingText"></div>
+
       <div class="footer">✦ By:Gabr ✦</div>
     </div>
   </div>
@@ -1368,6 +1346,7 @@ html, body{
           <img src="https://xatimg.com/image/7BIxmBkfxdGu.jpg">
         </div>
         <div class="slide right">
+ 
           <img src="https://xatimg.com/image/7BIxmBkfxdGu.jpg">
         </div>
         <div class="slide left">
@@ -1376,7 +1355,7 @@ html, body{
         <div class="slide right">
           <img src="https://xatimg.com/image/7BIxmBkfxdGu.jpg">
         </div>
-      </div>
+        </div>
       <div class="nav prev" onclick="prev()">❮</div>
       <div class="nav next" onclick="next()">❯</div>
     </div>
@@ -1389,6 +1368,7 @@ html, body{
     <div class="Amigos-card">
       <div class="Amigos-title">♡ Amigos ♡</div>
       <div class="Amigos-list">
+        
         <div class="friend-item">
           <div class="friend-left">
             <div class="friend-avatar-circle">Na</div>
@@ -1399,6 +1379,7 @@ html, body{
           </div>
           <a class="friend-btn" href="https://xat.me/12345" target="_blank"> XAT.ME </a>
         </div>
+
         <div class="friend-item">
           <div class="friend-left">
             <div class="friend-avatar-circle">Na</div>
@@ -1409,6 +1390,7 @@ html, body{
           </div>
           <a class="friend-btn" href="https://xat.me/12345" target="_blank"> XAT.ME </a>
         </div>
+
         <div class="friend-item">
           <div class="friend-left">
             <div class="friend-avatar-circle">Na</div>
@@ -1419,6 +1401,7 @@ html, body{
           </div>
           <a class="friend-btn" href="https://xat.me/12345" target="_blank"> XAT.ME </a>
         </div>
+
         <div class="friend-item">
           <div class="friend-left">
             <div class="friend-avatar-circle">Na</div>
@@ -1429,6 +1412,7 @@ html, body{
           </div>
           <a class="friend-btn" href="https://xat.me/12345" target="_blank"> XAT.ME </a>
         </div>
+
       </div>
     </div>
   </div>
@@ -1437,7 +1421,8 @@ html, body{
 <div class="modal-overlay" id="marriedModal">
   <div class="modal-content">
     <span class="modal-close" onclick="cerrarMarried()">×</span>
-    <div class="married-card">
+   
+  <div class="married-card">
       <div class="avatar-wrap">
         <div class="avatar">
           <img src="https://xatimg.com/image/7BIxmBkfxdGu.jpg">
@@ -1450,7 +1435,7 @@ html, body{
       <div class="id">12345</div>
       <div class="message">
         Cada momento ao seu lado é um presente que guardo com todo carinho no meu coração.
-      </div>
+ </div>
       <div class="xatme">
         <a href="https://xat.me/12345" target="_blank">XAT.ME</a>
       </div>
@@ -1459,11 +1444,267 @@ html, body{
 </div>
 
 <script>
+// ===============================
+//   EFECTO DE DIGITAÇÃO
+// ===============================
+const textToType = "Quando tiver finalizado uma meta, não olhe para ela como a linha de chegada; olhe como o punto de partida para sua próxima conquista.";
+let index = 0;
+
+function typeWriter() {
+  if (index < textToType.length) {
+    document.getElementById("typingText").innerHTML += textToType.charAt(index);
+    index++;
+    setTimeout(typeWriter, 50);
+  }
+}
+
+// ===============================
+//   EFECTO LLUVIA DE CORAZONES
+// ===============================
+const canvas = document.getElementById('heartsCanvas');
+const ctx = canvas.getContext('2d');
+let hearts = [];
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resize);
+resize();
+
+class ParticleHeart {
+  constructor() {
+    this.reset();
+}
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height - canvas.height;
+ this.size = Math.random() * 8 + 4;
+    this.speed = Math.random() * 2 + 1;
+ this.opacity = Math.random() * 0.5 + 0.2;
+    this.swing = Math.random() * 2;
+}
+  draw() {
+    ctx.fillStyle = `rgba(255, 100, 100, ${this.opacity})`;
+    ctx.beginPath();
+ ctx.arc(this.x, this.y, this.size / 2, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  update() {
+    this.y += this.speed;
+ this.x += Math.sin(this.y / 30) * this.swing;
+    if (this.y > canvas.height) this.reset();
+  }
+}
+
+function initHearts() {
+  hearts = [];
+ for (let i = 0; i < 50; i++) hearts.push(new ParticleHeart());
+}
+
+function animateHearts() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+ hearts.forEach(h => {
+    h.update();
+    h.draw();
+  });
+  requestAnimationFrame(animateHearts);
+}
+initHearts();
+animateHearts();
+
+// ===============================
+//   INTRO Y TRANSICIÓN
+// ===============================
+function enterSite(){
+  const intro = document.getElementById('intro');
+  document.body.classList.add('is-transitioning');
+  audio.play();
+  playPauseBtn.innerText = '⏸';
+ setTimeout(() => {
+    intro.style.display = 'none';
+    document.body.classList.remove('is-transitioning');
+    document.body.classList.add('entered');
+    typeWriter();
+  }, 900);
+}
+
+// ===============================
+//   PLAYER LÓGICA
+// ===============================
+const playlist = [
+            { name: "Eminem - You dont know", url: "https://www.dropbox.com/scl/fi/4y0lc0fi24e9yavn17psv/Eminem-you-dont-know.mp3.mp3?rlkey=zicb6spgqe3pv0gqnz3xc24zo&st=wy1w0icm&raw=1" },
+            { name: "The Sound of Silence – Rising to the Night", url: "https://www.dropbox.com/scl/fi/2y9zhx5zjsdxg3zljc2f9/sound-of-silence.mp3.mp3?rlkey=88zg0td3loy40uxmcm9rnk1jt&st=qty8093e&raw=1" },
+            { name: "Desireless - Voyage Voyage", url: "https://www.dropbox.com/scl/fi/2y9zhx5zjsdxg3zljc2f9/sound-of-silence.mp3.mp3?rlkey=88zg0td3loy40uxmcm9rnk1jt&st=0yenl8sh&raw=1" }
+        ];
+ let currentTrack = 0;
+const audio = new Audio();
+audio.volume = 0.5;
+const playPauseBtn = document.getElementById('playPauseBtn');
+ const songNameDisp = document.getElementById('songName');
+const progress = document.getElementById('progress');
+const volumeSlider = document.getElementById('volumeSlider');
+
+function loadTrack(idx){
+  const track = playlist[idx];
+ audio.src = track.url;
+  songNameDisp.innerText = track.name;
+}
+
+function togglePlayer(){
+  document.getElementById('playerDrop').classList.toggle('active');
+}
+
+audio.onended = () => {
+    currentTrack = (currentTrack + 1) % playlist.length;
+    loadTrack(currentTrack);
+    audio.play();
+    playPauseBtn.innerText = '⏸';
+};
+
+playPauseBtn.onclick = () => {
+  if(audio.paused){
+    audio.play();
+    playPauseBtn.innerText = '⏸';
+ } else {
+    audio.pause();
+    playPauseBtn.innerText = '▶';
+  }
+};
+ document.getElementById('prevBtn').onclick = () => {
+  currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
+  loadTrack(currentTrack);
+  audio.play();
+  playPauseBtn.innerText = '⏸';
+ };
+
+document.getElementById('nextBtn').onclick = () => {
+  currentTrack = (currentTrack + 1) % playlist.length;
+  loadTrack(currentTrack);
+  audio.play();
+  playPauseBtn.innerText = '⏸';
+};
+ audio.ontimeupdate = () => {
+  if(audio.duration) progress.value = (audio.currentTime / audio.duration) * 100;
+};
+ progress.oninput = () => {
+  audio.currentTime = (progress.value / 100) * audio.duration;
+};
+ volumeSlider.oninput = () => {
+  audio.volume = volumeSlider.value;
+};
+
+loadTrack(currentTrack);
+
+// ===============================
+//   MODALES
+// ===============================
+function abrirAmigos(){ document.getElementById('friendModal').classList.add('active'); }
+function cerrarFriend(){ document.getElementById('friendModal').classList.remove('active'); }
+
+function abrirMarried(){ document.getElementById('marriedModal').classList.add('active'); }
+function cerrarMarried(){ document.getElementById('marriedModal').classList.remove('active'); }
+
+function abrirGaleria(){ document.getElementById('galeriaModal').classList.add('active'); }
+function cerrarGaleria(){ document.getElementById('galeriaModal').classList.remove('active'); }
+
+
+// ===============================
+//   GALERIA SLIDER
+// ===============================
+const slides = document.querySelectorAll('#galeriaModal .slide');
+let currentSlide = 0;
+ function updateSlider(){
+  slides.forEach((s,i)=>{
+    s.className = 'slide';
+    if(i === currentSlide) s.classList.add('active');
+    else if(i === (currentSlide - 1 + slides.length) % slides.length) s.classList.add('left');
+    else if(i === (currentSlide + 1) % slides.length) s.classList.add('right');
+  });
+ }
+
+function next(){
+  currentSlide = (currentSlide + 1) % slides.length;
+  updateSlider();
+ }
+
+function prev(){
+  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+  updateSlider();
+}
+
+updateSlider();
+
+// ===============================
+//   ESTRELA / CORAZONES
+// ===============================
+function spawnSparkle(e){
+  const sparkle = document.createElement('div');
+  sparkle.className = 'heart-sparkle';
+  let x = e.clientX || (e.touches && e.touches[0].clientX);
+  let y = e.clientY || (e.touches && e.touches[0].clientY);
+  sparkle.style.left = x + 'px';
+  sparkle.style.top = y + 'px';
+  document.body.appendChild(sparkle);
+  setTimeout(()=>sparkle.remove(), 600);
+}
+
+document.addEventListener('mousemove', spawnSparkle);
+document.addEventListener("mousemove", function(e) {
+    let corazon = document.createElement("div");
+    corazon.className = "corazon-xat";
+    corazon.innerHTML = "❤";
+    corazon.style.left = (e.clientX + 5) + "px";
+    corazon.style.top = (e.clientY + 5) + "px";
+    document.body.appendChild(corazon);
+    setTimeout(() => { corazon.remove(); }, 3500);
+});
+
+</script>
+<style>
+  /* Alerta Personalizado (Cores Bordô/Vermelho) */
+  #custom-alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(60, 0, 0, 0.98); /* Fundo bordô profundo */
+    color: #ffcccc; /* Texto rosa claro */
+    padding: 22px 45px;
+    border-radius: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    z-index: 9999999; /* Garante que fique acima de tudo */
+    display: none;
+    border: 2px solid #ff1a1a; /* Borda vermelha viva */
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.6); /* Brilho neon */
+    text-align: center;
+    pointer-events: none;
+    letter-spacing: 1px;
+  }
+
+  /* Trava de Seleção de Texto Global */
+  * {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+</style>
+
+<div id="custom-alert">Copyright - Acesso Proibido</div>
+
+<script>
   (function() {
     function mostrarAlerta() {
       const alerta = document.getElementById('custom-alert');
       alerta.style.display = 'block';
-      setTimeout(() => { alerta.style.display = 'none'; }, 2000);
+      
+      // Some após 2 segundos exatamente
+      setTimeout(() => {
+        alerta.style.display = 'none';
+      }, 2000);
     }
 
     // Trava 1: Botão Direito
@@ -1472,157 +1713,27 @@ html, body{
       mostrarAlerta();
     });
 
-    // Trava 2: Teclado
+    // Trava 2: Teclado (Ctrl+U, F12, Ctrl+Shift+I/J)
     document.onkeydown = function(e) {
-      if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) {
+      // Bloqueia F12
+      if (e.keyCode == 123) {
+        mostrarAlerta();
+        return false;
+      }
+      
+      // Bloqueia Ctrl+U (Código Fonte)
+      if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+        mostrarAlerta();
+        return false;
+      }
+      
+      // Bloqueia Inspecionar Elemento (Ctrl+Shift+I ou J)
+      if (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) {
         mostrarAlerta();
         return false;
       }
     };
-
-    // BLOQUEIO DA BARRA DE STATUS (SOMENTE ISSO ADICIONADO)
-    function travaStatus() {
-      const links = document.querySelectorAll('a');
-      links.forEach(link => {
-        const href = link.getAttribute('href');
-        if (href && href !== '#' && href !== '') {
-          link.addEventListener('mouseover', () => link.removeAttribute('href'));
-          link.addEventListener('mouseout', () => link.setAttribute('href', href));
-          link.addEventListener('mousedown', () => link.setAttribute('href', href));
-        }
-      });
-    }
-    window.addEventListener('DOMContentLoaded', travaStatus);
   })();
-
-  const textToType = "Quando tiver finalizado uma meta, não olhe para ela como a linha de chegada; olhe como o punto de partida para sua próxima conquista.";
-  let index = 0;
-  function typeWriter() {
-    if (index < textToType.length) {
-      document.getElementById("typingText").innerHTML += textToType.charAt(index);
-      index++;
-      setTimeout(typeWriter, 50);
-    }
-  }
-
-  const canvas = document.getElementById('heartsCanvas');
-  const ctx = canvas.getContext('2d');
-  let hearts = [];
-  function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  window.addEventListener('resize', resize);
-  resize();
-
-  class ParticleHeart {
-    constructor() { this.reset(); }
-    reset() {
-      this.x = Math.random() * canvas.width;
-      this.y = Math.random() * canvas.height - canvas.height;
-      this.size = Math.random() * 8 + 4;
-      this.speed = Math.random() * 2 + 1;
-      this.opacity = Math.random() * 0.5 + 0.2;
-      this.swing = Math.random() * 2;
-    }
-    draw() {
-      ctx.fillStyle = `rgba(255, 100, 100, ${this.opacity})`;
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size / 2, 0, Math.PI * 2);
-      ctx.fill();
-    }
-    update() {
-      this.y += this.speed;
-      this.x += Math.sin(this.y / 30) * this.swing;
-      if (this.y > canvas.height) this.reset();
-    }
-  }
-
-  function initHearts() {
-    hearts = [];
-    for (let i = 0; i < 50; i++) hearts.push(new ParticleHeart());
-  }
-  function animateHearts() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    hearts.forEach(h => { h.update(); h.draw(); });
-    requestAnimationFrame(animateHearts);
-  }
-
-  function enterSite() {
-    document.body.classList.add('is-transitioning');
-    setTimeout(() => {
-      document.getElementById('intro').style.display = 'none';
-      document.body.classList.remove('is-transitioning');
-      document.body.classList.add('entered');
-      initHearts();
-      animateHearts();
-      typeWriter();
-    }, 900);
-  }
-
-  function abrirGaleria() { document.getElementById('galeriaModal').classList.add('active'); }
-  function cerrarGaleria() { document.getElementById('galeriaModal').classList.remove('active'); }
-  function abrirFriend() { document.getElementById('friendModal').classList.add('active'); }
-  function cerrarFriend() { document.getElementById('friendModal').classList.remove('active'); }
-  function abrirMarried() { document.getElementById('marriedModal').classList.add('active'); }
-  function cerrarMarried() { document.getElementById('marriedModal').classList.remove('active'); }
-
-  window.abrirAmigos = abrirFriend;
-  window.cerrarFriend = cerrarFriend;
-
-  let currentSlide = 0;
-  function updateSlider() {
-    const slides = document.querySelectorAll('.slide');
-    slides.forEach((s, i) => {
-      s.className = 'slide';
-      if (i === currentSlide) s.classList.add('active');
-      else if (i === (currentSlide - 1 + slides.length) % slides.length) s.classList.add('left');
-      else if (i === (currentSlide + 1) % slides.length) s.classList.add('right');
-    });
-  }
-  function next() {
-    const slides = document.querySelectorAll('.slide');
-    currentSlide = (currentSlide + 1) % slides.length;
-    updateSlider();
-  }
-  function prev() {
-    const slides = document.querySelectorAll('.slide');
-    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-    updateSlider();
-  }
-
-  const playlist = [
-    { name: "Die With A Smile", url: "https://ia801309.us.archive.org/16/items/lady-gaga-bruno-mars-die-with-a-smile/Lady%20Gaga%20%26%20Bruno%20Mars%20-%20Die%20With%20A%20Smile.mp3" }
-  ];
-  let trackIndex = 0;
-  const audio = new Audio(playlist[trackIndex].url);
-  const playBtn = document.getElementById('playPauseBtn');
-  const songName = document.getElementById('songName');
-  const prog = document.getElementById('progress');
-  const vol = document.getElementById('volumeSlider');
-
-  function togglePlayer() { document.getElementById('playerDrop').classList.toggle('active'); }
-  
-  playBtn.onclick = () => {
-    if (audio.paused) { audio.play(); playBtn.innerText = '⏸'; }
-    else { audio.pause(); playBtn.innerText = '▶'; }
-  };
-  
-  audio.ontimeupdate = () => { prog.value = (audio.currentTime / audio.duration) * 100 || 0; };
-  prog.oninput = () => { audio.currentTime = (prog.value / 100) * audio.duration; };
-  vol.oninput = () => { audio.volume = vol.value; };
-  
-  window.onload = () => { songName.innerText = playlist[trackIndex].name; };
-
-  document.addEventListener('mousemove', (e) => {
-    const sparkle = document.createElement('div');
-    sparkle.className = 'heart-sparkle';
-    sparkle.style.left = e.clientX + 'px';
-    sparkle.style.top = e.clientY + 'px';
-    document.body.appendChild(sparkle);
-    setTimeout(() => sparkle.remove(), 600);
-  });
 </script>
-
 </body>
 </html>
