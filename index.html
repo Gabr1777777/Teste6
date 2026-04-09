@@ -1269,6 +1269,7 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
   filter:brightness(.45);
   transform:scale(.75);
   box-shadow:0 12px 30px rgba(0,0,0,.25);
+  cursor: pointer; /* Indica que é clicável */
 }
 
 .slide img{
@@ -1337,7 +1338,7 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
 
 </style>
 </head>
-<body>
+<body onclick="cerrarSiAfuera(event)">
 
 <div class="intro" id="intro">
   <div class="heart-wrapper">
@@ -1405,35 +1406,35 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
   </div>
 </div>
 
-<div class="modal-overlay" id="galeriaModal">
-  <div class="modal-content">
+<div class="modal-overlay" id="galeriaModal" onclick="cerrarGaleria()">
+  <div class="modal-content" onclick="event.stopPropagation()">
     <span class="modal-close" onclick="cerrarGaleria()">×</span>
     <div class="gallery-box">
       <div class="gallery-header">
         <span>⭐︎ɢᴀʟᴇʀɪᴀ⭐︎</span>
       </div>
       <div class="slider" id="slider">
-        <div class="slide active">
+        <div class="slide active" onclick="abrirGaleria()">
           <img src="https://xatimg.com/image/7BIxmBkfxdGu.jpg">
         </div>
-        <div class="slide right">
+        <div class="slide right" onclick="abrirGaleria()">
           <img src="https://xatimg.com/image/7BIxmBkfxdGu.jpg">
         </div>
-        <div class="slide left">
+        <div class="slide left" onclick="abrirGaleria()">
           <img src="https://xatimg.com/image/7BIxmBkfxdGu.jpg">
         </div>
-        <div class="slide right">
+        <div class="slide right" onclick="abrirGaleria()">
           <img src="https://xatimg.com/image/7BIxmBkfxdGu.jpg">
         </div>
-        </div>
+      </div>
       <div class="nav prev" onclick="prev()">❮</div>
       <div class="nav next" onclick="next()">❯</div>
     </div>
   </div>
 </div>
 
-<div class="modal-overlay" id="friendModal">
-  <div class="modal-content">
+<div class="modal-overlay" id="friendModal" onclick="cerrarFriend()">
+  <div class="modal-content" onclick="event.stopPropagation()">
     <span class="modal-close" onclick="cerrarFriend()">×</span>
     <div class="Amigos-card">
       <div class="Amigos-title">♡ Amigos ♡</div>
@@ -1510,8 +1511,8 @@ html, body, a, div, span, p, img, button, input, textarea, select, * {
   </div>
 </div>
 
-<div class="modal-overlay" id="marriedModal">
-  <div class="modal-content">
+<div class="modal-overlay" id="marriedModal" onclick="cerrarMarried()">
+  <div class="modal-content" onclick="event.stopPropagation()">
     <span class="modal-close" onclick="cerrarMarried()">×</span>
     <div class="married-card">
       <div class="avatar-wrap">
@@ -1597,7 +1598,6 @@ function enterSite(){
   const intro = document.getElementById('intro');
   document.body.classList.add('is-transitioning');
 
-  // INICIA A MÚSICA AO CLICAR
   audio.play();
   playPauseBtn.innerText = '⏸';
 
@@ -1605,12 +1605,7 @@ function enterSite(){
     intro.style.display = 'none';
     document.body.classList.remove('is-transitioning');
     document.body.classList.add('entered');
-    spawnSparklesEffect();
   }, 900);
-}
-
-function spawnSparklesEffect(){
-  // Solo visual para el entrar
 }
 
 // ===============================
@@ -1624,7 +1619,7 @@ const playlist = [
 
 let currentTrack = 0;
 const audio = new Audio();
-audio.volume = 0.5; // volume inicial
+audio.volume = 0.5;
 const playPauseBtn = document.getElementById('playPauseBtn');
 const songNameDisp = document.getElementById('songName');
 const progress = document.getElementById('progress');
@@ -1641,45 +1636,28 @@ function togglePlayer(){
 }
 
 playPauseBtn.onclick = () => {
-  if(audio.paused){
-    audio.play();
-    playPauseBtn.innerText = '⏸';
-  } else {
-    audio.pause();
-    playPauseBtn.innerText = '▶';
-  }
+  if(audio.paused){ audio.play(); playPauseBtn.innerText = '⏸'; }
+  else { audio.pause(); playPauseBtn.innerText = '▶'; }
 };
 
 document.getElementById('prevBtn').onclick = () => {
   currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
-  loadTrack(currentTrack);
-  audio.play();
-  playPauseBtn.innerText = '⏸';
+  loadTrack(currentTrack); audio.play(); playPauseBtn.innerText = '⏸';
 };
 
 document.getElementById('nextBtn').onclick = () => {
   currentTrack = (currentTrack + 1) % playlist.length;
-  loadTrack(currentTrack);
-  audio.play();
-  playPauseBtn.innerText = '⏸';
+  loadTrack(currentTrack); audio.play(); playPauseBtn.innerText = '⏸';
 };
 
-audio.ontimeupdate = () => {
-  if(audio.duration) progress.value = (audio.currentTime / audio.duration) * 100;
-};
-
-progress.oninput = () => {
-  audio.currentTime = (progress.value / 100) * audio.duration;
-};
-
-volumeSlider.oninput = () => {
-  audio.volume = volumeSlider.value;
-};
+audio.ontimeupdate = () => { if(audio.duration) progress.value = (audio.currentTime / audio.duration) * 100; };
+progress.oninput = () => { audio.currentTime = (progress.value / 100) * audio.duration; };
+volumeSlider.oninput = () => { audio.volume = volumeSlider.value; };
 
 loadTrack(currentTrack);
 
 // ===============================
-//   MODALES
+//   MODALES Y CIERRE POR LADO
 // ===============================
 function abrirAmigos(){ document.getElementById('friendModal').classList.add('active'); }
 function cerrarFriend(){ document.getElementById('friendModal').classList.remove('active'); }
@@ -1689,7 +1667,6 @@ function cerrarMarried(){ document.getElementById('marriedModal').classList.remo
 
 function abrirGaleria(){ document.getElementById('galeriaModal').classList.add('active'); }
 function cerrarGaleria(){ document.getElementById('galeriaModal').classList.remove('active'); }
-
 
 // ===============================
 //   GALERIA SLIDER
@@ -1706,16 +1683,8 @@ function updateSlider(){
   });
 }
 
-function next(){
-  currentSlide = (currentSlide + 1) % slides.length;
-  updateSlider();
-}
-
-function prev(){
-  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-  updateSlider();
-}
-
+function next(){ currentSlide = (currentSlide + 1) % slides.length; updateSlider(); }
+function prev(){ currentSlide = (currentSlide - 1 + slides.length) % slides.length; updateSlider(); }
 updateSlider();
 
 // ===============================
@@ -1726,15 +1695,12 @@ function spawnSparkle(e){
   sparkle.className = 'heart-sparkle';
   let x = e.clientX || (e.touches && e.touches[0].clientX);
   let y = e.clientY || (e.touches && e.touches[0].clientY);
-  sparkle.style.left = x + 'px';
-  sparkle.style.top = y + 'px';
+  sparkle.style.left = x + 'px'; sparkle.style.top = y + 'px';
   document.body.appendChild(sparkle);
   setTimeout(()=>sparkle.remove(), 600);
 }
 
 document.addEventListener('mousemove', spawnSparkle);
-window.addEventListener("message", spawnSparkle);
-
 
 document.addEventListener("mousemove", function(e) {
     let corazon = document.createElement("div");
@@ -1742,31 +1708,9 @@ document.addEventListener("mousemove", function(e) {
     corazon.innerHTML = "❤";
     corazon.style.left = (e.clientX + 5) + "px";
     corazon.style.top = (e.clientY + 5) + "px";
-
     document.body.appendChild(corazon);
-
-    setTimeout(() => {
-        corazon.remove();
-    }, 3500);
+    setTimeout(() => { corazon.remove(); }, 3500);
 });
-
-
-function abrirFriend(){
-  document.getElementById("friendModal").classList.add("active");
-}
-
-function cerrarFriend(){
-  document.getElementById("friendModal").classList.remove("active");
-}
-
-function abrirMarried(){
-  document.getElementById("marriedModal").classList.add("active");
-}
-
-function cerrarMarried(){
-  document.getElementById("marriedModal").classList.remove("active");
-}
-
 </script>
 </body>
 </html>
